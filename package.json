@@ -1,0 +1,14 @@
+{
+    "name": "tally"
+  , "version": "0.0.1"
+  , "description": "Tally is an unobtrusive templating engine for Express 3."
+  , "main": "index.js"
+  , "dependencies": {
+        "express": "3.0.x"
+      , "jsdom": "0.5.1"
+      , "html5": "0.3.0"
+      , "handlebars": "1.0.10"
+    }
+  ,  "author": "Aral Balkan <aral@aralbalkan.com>"
+  , "license": "MIT"
+}
