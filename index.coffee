@@ -1,6 +1,19 @@
 express = require 'express'
 tally = require './lib/tally.coffee'
 
+superagent = require 'superagent'
+
+#
+# Set up Express with Tally as the templating engine.
+#
+app = express()
+app.engine 'html', tally.__express
+app.set 'views', __dirname + '/views'
+
+#
+# Simple template example (with static data)
+#
+
 # Sample data
 data =
     title: 'Tally sample'
@@ -16,13 +29,6 @@ data =
             {name: 'Natalie', skills: 'HTML, CSS'}
         ]
 
-#
-# Set up Express with Tally as the templating engine.
-#
-app = express()
-app.engine 'html', tally.__express
-app.set 'views', __dirname + '/views'
-
 # Pure Tally call.
 app.get '/', (request, response) ->
     data.hybrid = no
@@ -32,6 +38,24 @@ app.get '/', (request, response) ->
 app.get '/hybrid', (request, response) ->
     data.hybrid = yes
     response.render 'hybrid.html', data
+
+#
+# App.net global timeline example.
+#
+
+app.get '/posts', (request, response) ->
+    superagent.get('https://alpha-api.app.net/stream/0/posts/stream/global')
+        .end (globalTimelineResponse) ->
+            if globalTimelineResponse.body
+
+                # Attach a custom function to the data to count the number of posts
+                globalTimelineResponse.body.numberOfPosts = ->
+                    return this.data.length
+
+                response.render 'posts.html', globalTimelineResponse.body
+            else
+                response.render 'posts.html', {error: 'Bad response from Twitter'}
+
 
 app.listen 3000
 console.log 'The Tally sample is listening on port 3000…'

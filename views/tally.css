@@ -16,6 +16,11 @@
     border: 1px dotted red;
 }
 
+[data-qif='false'].show
+{
+	opacity: 0.5;
+}
+
 #highlight-template
 {
     position:fixed;

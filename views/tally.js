@@ -1,11 +1,11 @@
 var toggleState = false
 
-window.onload = function () {
+window.addEventListener('load', function () {
 
     var button = document.getElementById('highlight-template');
 
-    button.onclick = function() {
-        var nodes = document.querySelectorAll ('[data-qrepeat], [data-qtext], [data-qattr], [data-qif^="not:"], [data-qrepeat]');
+    button.addEventListener ('click', function() {
+        var nodes = document.querySelectorAll ('[data-qrepeat], [data-qtext], [data-qattr], [data-qif^="not:"], [data-qrepeat], [data-qif="false"]');
         for (var i = 0; i < nodes.length; i++) {
             node = nodes[i];
             if (!toggleState) {
@@ -16,6 +16,5 @@ window.onload = function () {
         }
         toggleState = !toggleState;
         button.innerHTML = (toggleState ? 'Hide' : 'Show') + ' highlights';
-    }
-
-}
+    });
+});
