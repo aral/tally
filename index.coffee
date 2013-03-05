@@ -34,6 +34,6 @@ app.get '/hybrid', (request, response) ->
     response.render 'hybrid.html', data
 
 app.listen 3000
-console.log 'Express-Tally is listening on port 3000…'
+console.log 'The Tally sample is listening on port 3000…'
 
 

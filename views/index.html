@@ -10,17 +10,48 @@
         <style type='text/css'>
             body { max-width: 400px; }
             img { max-width:250px; }
+        </style>
 
+        <style data-qif='false'>
             /* Template highlights */
-            [data-qrepeat], [data-qtext], [data-qattr] {border: 1px dotted black;}
-            [data-qrepeat]:before {
+            [data-qrepeat].show, [data-qtext].show, [data-qattr].show {
+                border: 1px dotted black;
+            }
+            [data-qrepeat].show:before {
+                /*
+                    Nice trick from:
+                    http://stackoverflow.com/questions/5041494/manipulating-css-before-and-after-pseudo-elements-using-jquery
+                */
                 content: url('repeat.png');
                 float:right;
             }
-            [data-qif^="not:"] {
+            [data-qif^='not:'].show {
                 border: 1px dotted red;
             }
+            #highlight-template {
+                position:fixed;
+                top: 0;
+                right: 0;
+            }
         </style>
+        <script data-qif='false'>
+            var toggleState = false
+            window.onload = function () {
+                var button = document.getElementById('highlight-template');
+                button.onclick = function() {
+                    var nodes = document.querySelectorAll ('[data-qrepeat], [data-qtext], [data-qattr], [data-qif^="not:"], [data-qrepeat]');
+                    for (var i = 0; i < nodes.length; i++) {
+                        node = nodes[i];
+                        if (!toggleState) {
+                            node.classList.add('show');
+                        } else {
+                            node.classList.remove('show');
+                        }
+                    }
+                    toggleState = !toggleState;
+                }
+            }
+        </script>
     </head>
     <body>
         <h1 data-qtext='title'>A placeholder title</h1>
@@ -42,16 +73,16 @@
             <li data-qrepeat='friend friends'>
                 <p><span data-qtext='friend.name'>Name</span> knows <span data-qtext='friend.skills'>skills</span>.</p>
             </li>
-            <li data-qif="false">
+            <li data-qif='false'>
                 <p>Some sample content.</p>
             </li>
-            <li data-qif="false">
+            <li data-qif='false'>
                 <p>That could help when styling the page.</p>
             </li>
         </ul>
 
-
         <p data-qif='not:friends'>Error: No friends found.</p>
 
+        <button id='highlight-template' data-qif='false'>Highlight template</button>
     </body>
 </html>
