@@ -70,7 +70,7 @@ tally = (root, obj) ->
 
   #output formatter
   format = qdef.format
-  qdef = qdef.qdef or "data-qdef"
+  qdef = qdef.qdef or "data-tally-def"
   TAL = "*[" + [qdef, qif, qrepeat, qattr, qtext].join("],*[") + "]"
   html = undefined
   getProp = (s) ->
