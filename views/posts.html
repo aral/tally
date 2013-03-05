@@ -11,19 +11,17 @@
 </head>
 <body>
 	<h1>App.net Global Timeline</h1>
-	<p>Showing you the latest <span dataq-qtext.</p>
+	<p>Showing you the latest <span data-qtext='numberOfPosts'></span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
-		<li data-qrepeat='post data'><img data-qattr='src post.user.avatar_image.url' src='http://placehold.it/100/100' alt='User name’s avatar'><span data-qtext='post.text'>This is the post text. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK.</span> &#8202;—&#8202; <a data-qattr='href post.user.canonical_url' data-qtext='post.user.name' href=''>Jane Person</a>.</li>
+		<li data-qrepeat='post data'><img data-qattr='src post.user.avatar_image.url' src='http://placehold.it/100x100' alt='User name’s avatar'><span data-qtext='post.text'>This is the post text. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK.</span> &#8202;—&#8202; <a data-qattr='href post.user.canonical_url' data-qtext='post.user.name' href=''>Jane Person</a>.</li>
 
-		<li data-qif='false'><img src='http://placehold.it/100/100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+		<li data-qif='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
 
-		<li data-qif='false'><img src='http://placehold.it/100/100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+		<li data-qif='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
 
-		<li data-qif='false'><img src='http://placehold.it/100/100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+		<li data-qif='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
 
-		<li data-qif='false'><img src='http://placehold.it/100/100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
-
-		<li data-qif='false'><img src='http://placehold.it/100/100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+		<li data-qif='not:numberOfPosts'>There are no posts to display.</li>
 	</ul>
 
 	<button data-qif='false' id='highlight-template'>Show highlights</button>

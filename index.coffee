@@ -9,6 +9,7 @@ superagent = require 'superagent'
 app = express()
 app.engine 'html', tally.__express
 app.set 'views', __dirname + '/views'
+app.use express.static('views')
 
 #
 # Simple template example (with static data)

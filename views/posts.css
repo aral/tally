@@ -1,12 +1,20 @@
 body {
 	max-width: 768px;
 	line-height: 24px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	margin: 36px 48px;
+}
+
+ul {
+	margin-top: 36px;
 }
 
 li {
 	list-style-type: none;
 	margin-bottom: 36px;
-	min-height: 106px;
+	min-height: 100px;
+	background-color: #eee;
+	padding: 12px;
 }
 
 li img {
@@ -14,4 +22,10 @@ li img {
 	margin-right: 36px;
 	width: 100px;
 	height: 100px;
+	border: 1px solid black;
+}
+
+[data-qif='not:numberOfPosts'] {
+	background-color: transparent;
+	color: red;
 }

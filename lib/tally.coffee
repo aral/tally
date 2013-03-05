@@ -24,6 +24,8 @@ exports.__express = (path, data, callback) ->
 		# setting their display to none as makes sense on the client.
 		data.aralbalkan = {tallyRunningInNode: yes}
 
+		# console.log data
+
 		window.data = data
 		window.run distal
 
