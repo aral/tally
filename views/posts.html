@@ -3,7 +3,7 @@
 <head>
 	<meta charset='utf-8'>
 	<title></title>
-
+	<meta name='viewport' content='width=device-width'>
 	<link rel='stylesheet' type='text/css' href='posts.css'>
 
     <link data-tally-if='false' rel='stylesheet' type='text/css' href='tally-highlights.css'>
@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>App.net Global Timeline</h1>
-	<p>Showing you the latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
+	<p>The latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
 		<li data-tally-repeat='post data'>
 			<img data-tally-attr='src post.user.avatar_image.url' src='http://placehold.it/100x100' alt='User name’s avatar'>
@@ -26,11 +26,13 @@
 
 		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John Person</a> <span class='postText'>By the way, did we mention that you can learn how to make native iPhone and iPad apps using Objective-C and Cocoa Touch in just three days of hands‐on coding with Aral at his <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in Brighton this April?</p><p>Oh, we did, ah… well, at least that’s filled up this longer post sample that has multiple paragraphs so that we can design for that eventuality.</span></li>
 
-		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><a class='user' href=''>Yet A. Nother-Person</a> <span class='postText'>By tweaking the copy of the sample posts&#8202;—&#8202;and using actual content&#8202;—&#8202; you can get a better feel for the constraints of your design and anticipate e.g., what happens with really long URLs like this: http://thisisareallylongurlohmyyourerightitisaverylongurlwhatlongurlsyouhavegrandma.com</li>
+		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>Yet A. Nother-Person</a> <span class='postText'>By using a range of copy&#8202;—&#8202;and actual content&#8202;—&#8202; you can get a better feel for the constraints of your design e.g., what happens with really long URLs like this: http://thisisareallylongurlohmyyourerightitisaverylongurlwhatlongurlsyouhavegrandma.com</p></li>
 
 		<li data-tally-if='not:numberOfPosts'>There are no posts to display.</li>
 	</ul>
 
-	<button data-tally-if='false' id='highlight-template'>Show highlights</button>
+	<div id='tallyControls'>
+		<button data-tally-if='false' id='highlightTemplate'>Show highlights</button>
+	</div>
 </body>
 </html>

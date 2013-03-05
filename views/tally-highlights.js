@@ -2,10 +2,12 @@ var toggleState = false;
 
 window.addEventListener('load', function () {
 
-    var button = document.getElementById('highlight-template');
+    var button = document.getElementById('highlightTemplate');
 
     button.addEventListener ('click', function() {
+
         var nodes = document.querySelectorAll ('[data-tally-repeat], [data-tally-text], [data-tally-attr], [data-tally-if^="not:"], [data-tally-repeat], [data-tally-if="false"]');
+
         for (var i = 0; i < nodes.length; i++) {
             var node = nodes[i];
             if (!toggleState) {
@@ -14,6 +16,14 @@ window.addEventListener('load', function () {
                 node.classList.remove('show');
             }
         }
+
+        // Special case: although the Show highlights button is, itself, an element
+        // ============= that will not show in the final template, let’s not dim it
+        //               as it might look disabled to the user. Also it is clearly
+        //               demarcated from the rest of the document as a control so it
+        //               won’t be mistaken for a document item.
+        document.getElementById('highlightTemplate').classList.remove('show')
+
         toggleState = !toggleState;
         button.innerHTML = (toggleState ? 'Hide' : 'Show') + ' highlights';
     });

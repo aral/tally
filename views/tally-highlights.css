@@ -21,12 +21,20 @@
 	opacity: 0.25;
 }
 
-#highlight-template
+#highlightTemplate
 {
-    position:fixed;
-    top: 12px;
-    right: 12px;
+    display: block;
     width: 200px;
     height: 30px;
     font-size: 16px;
+    margin: 12px auto;
+}
+
+#tallyControls
+{
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    background-color: gray;
+    width: 100%;
 }
