@@ -1,5 +1,5 @@
 express = require 'express'
-tally = require './lib/tally.coffee'
+tally = require './lib/tally-express.coffee'
 
 superagent = require 'superagent'
 
@@ -19,7 +19,7 @@ app.use express.static('views')
 data =
     title: 'Tally sample'
     name: 'Tally'
-    content: 'This is a simple example to demonstrate Tally, a templating engine for Express 3 that uses Distal, a JavaScript implementation of TAL from the Zope framework.'
+    content: 'This is a simple example to demonstrate Tally, a templating engine for Express 3 and client‐side JavaScript built on Distal, a JavaScript implementation of TAL from the Zope framework.'
     newURL: 'http://aralbalkan.com'
     correctURLFragment: 'moderniosdevelopment'
     aralImageURL: 'http://aralbalkan.com/images/aral.jpg'

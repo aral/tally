@@ -1,13 +1,13 @@
-var toggleState = false
+var toggleState = false;
 
 window.addEventListener('load', function () {
 
     var button = document.getElementById('highlight-template');
 
     button.addEventListener ('click', function() {
-        var nodes = document.querySelectorAll ('[data-qrepeat], [data-qtext], [data-qattr], [data-qif^="not:"], [data-qrepeat], [data-qif="false"]');
+        var nodes = document.querySelectorAll ('[data-tally-repeat], [data-tally-text], [data-tally-attr], [data-tally-if^="not:"], [data-tally-repeat], [data-tally-if="false"]');
         for (var i = 0; i < nodes.length; i++) {
-            node = nodes[i];
+            var node = nodes[i];
             if (!toggleState) {
                 node.classList.add('show');
             } else {

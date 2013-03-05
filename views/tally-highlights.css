@@ -1,24 +1,24 @@
 /* Template highlights */
 
-[data-qrepeat].show, [data-qtext].show, [data-qattr].show
+[data-tally-repeat].show, [data-tally-text].show, [data-tally-attr].show
 {
     border: 1px dotted black;
 }
 
-[data-qrepeat].show:before
+[data-tally-repeat].show:before
 {
     content: url('repeat.png');
     float:right;
 }
 
-[data-qif^='not:'].show
+[data-tally-if^='not:'].show
 {
     border: 1px dotted red;
 }
 
-[data-qif='false'].show
+[data-tally-if='false'].show
 {
-	opacity: 0.5;
+	opacity: 0.25;
 }
 
 #highlight-template

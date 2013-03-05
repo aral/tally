@@ -3,24 +3,9 @@
     <head>
         <meta charset='utf-8'>
         <title data-qtext='title'></title>
-        <!-- Icons:
-            Repeat: Interactivemania - http://www.interactivemania.com
-            http://www.iconfinder.com/icondetails/49846/128/alt_media_repeat_icon
-        -->
-        <style type='text/css'>
-            body { max-width: 400px; }
-            img { max-width:250px; }
 
-            /* Template highlights */
-            [data-qrepeat], [data-qtext], [data-qattr] {border: 1px dotted black;}
-            [data-qrepeat]:before {
-                content: url('repeat.png');
-                float:right;
-            }
-            [data-qif^="not:"] {
-                border: 1px dotted red;
-            }
-        </style>
+        <link data-qif='false' rel='stylesheet' type='text/css' href='tally-hightlights.css'>
+        <script data-qif='false' src='tally-hightlights.js'></script>
     </head>
     <body>
         <h1>{{title}}</h1>

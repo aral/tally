@@ -6,24 +6,31 @@
 
 	<link rel='stylesheet' type='text/css' href='posts.css'>
 
-	<link rel='stylesheet' type='text/css' href='tally.css'>
-	<script type='text/javascript' src='tally.js'></script>
+    <link data-tally-if='false' rel='stylesheet' type='text/css' href='tally-highlights.css'>
+    <script data-tally-if='false' src='tally-highlights.js'></script>
 </head>
 <body>
 	<h1>App.net Global Timeline</h1>
-	<p>Showing you the latest <span data-qtext='numberOfPosts'></span> posts from <a href='http://join.app.net'>App.net</a>.</p>
+	<p>Showing you the latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
-		<li data-qrepeat='post data'><img data-qattr='src post.user.avatar_image.url' src='http://placehold.it/100x100' alt='User name’s avatar'><span data-qtext='post.text'>This is the post text. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK.</span> &#8202;—&#8202; <a data-qattr='href post.user.canonical_url' data-qtext='post.user.name' href=''>Jane Person</a>.</li>
+		<li data-tally-repeat='post data'>
+			<img data-tally-attr='src post.user.avatar_image.url' src='http://placehold.it/100x100' alt='User name’s avatar'>
 
-		<li data-qif='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+			<p><a class='user' data-tally-attr='href post.user.canonical_url' data-tally-text='post.user.name' href=''>Jane Person</a>
 
-		<li data-qif='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+			<span class='postText' data-tally-text='post.text'>This is a sample post. This list item will be the one that is used as the prototype for the final list. Working with actual content as a place‐holder means you can do things like add (and style) <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK.</span></p>
 
-		<li data-qif='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'>This is another post. It can be up to 255 characters long in App.net. It can contain <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK. &#8202;—&#8202; <a href=''>Some Other Person</a>.</li>
+		</li>
 
-		<li data-qif='not:numberOfPosts'>There are no posts to display.</li>
+		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John Person</a> <span class='postText'>This is another sample post. These will only display when viewing the unprocessed template to help you tweak the design of the page.</span></li>
+
+		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John Person</a> <span class='postText'>By the way, did we mention that you can learn how to make native iPhone and iPad apps using Objective-C and Cocoa Touch in just three days of hands‐on coding with Aral at his <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in Brighton this April?</p><p>Oh, we did, ah… well, at least that’s filled up this longer post sample that has multiple paragraphs so that we can design for that eventuality.</span></li>
+
+		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><a class='user' href=''>Yet A. Nother-Person</a> <span class='postText'>By tweaking the copy of the sample posts&#8202;—&#8202;and using actual content&#8202;—&#8202; you can get a better feel for the constraints of your design and anticipate e.g., what happens with really long URLs like this: http://thisisareallylongurlohmyyourerightitisaverylongurlwhatlongurlsyouhavegrandma.com</li>
+
+		<li data-tally-if='not:numberOfPosts'>There are no posts to display.</li>
 	</ul>
 
-	<button data-qif='false' id='highlight-template'>Show highlights</button>
+	<button data-tally-if='false' id='highlight-template'>Show highlights</button>
 </body>
 </html>
