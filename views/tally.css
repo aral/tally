@@ -1,0 +1,27 @@
+/* Template highlights */
+
+[data-qrepeat].show, [data-qtext].show, [data-qattr].show
+{
+    border: 1px dotted black;
+}
+
+[data-qrepeat].show:before
+{
+    content: url('repeat.png');
+    float:right;
+}
+
+[data-qif^='not:'].show
+{
+    border: 1px dotted red;
+}
+
+#highlight-template
+{
+    position:fixed;
+    top: 12px;
+    right: 12px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+}

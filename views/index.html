@@ -3,55 +3,15 @@
     <head>
         <meta charset='utf-8'>
         <title data-qtext='title'></title>
-        <!-- Icons:
-            Repeat: Interactivemania - http://www.interactivemania.com
-            http://www.iconfinder.com/icondetails/49846/128/alt_media_repeat_icon
-        -->
+
         <style type='text/css'>
             body { max-width: 400px; }
             img { max-width:250px; }
         </style>
 
-        <style data-qif='false'>
-            /* Template highlights */
-            [data-qrepeat].show, [data-qtext].show, [data-qattr].show {
-                border: 1px dotted black;
-            }
-            [data-qrepeat].show:before {
-                /*
-                    Nice trick from:
-                    http://stackoverflow.com/questions/5041494/manipulating-css-before-and-after-pseudo-elements-using-jquery
-                */
-                content: url('repeat.png');
-                float:right;
-            }
-            [data-qif^='not:'].show {
-                border: 1px dotted red;
-            }
-            #highlight-template {
-                position:fixed;
-                top: 0;
-                right: 0;
-            }
-        </style>
-        <script data-qif='false'>
-            var toggleState = false
-            window.onload = function () {
-                var button = document.getElementById('highlight-template');
-                button.onclick = function() {
-                    var nodes = document.querySelectorAll ('[data-qrepeat], [data-qtext], [data-qattr], [data-qif^="not:"], [data-qrepeat]');
-                    for (var i = 0; i < nodes.length; i++) {
-                        node = nodes[i];
-                        if (!toggleState) {
-                            node.classList.add('show');
-                        } else {
-                            node.classList.remove('show');
-                        }
-                    }
-                    toggleState = !toggleState;
-                }
-            }
-        </script>
+        <!-- Adds a ‘Show highlights’ button to highlight the template placeholders. -->
+        <link data-qif='false' rel='stylesheet' type='text/css' href='tally.css'>
+        <script data-qif='false' src='tally.js'></script>
     </head>
     <body>
         <h1 data-qtext='title'>A placeholder title</h1>
@@ -83,6 +43,6 @@
 
         <p data-qif='not:friends'>Error: No friends found.</p>
 
-        <button id='highlight-template' data-qif='false'>Highlight template</button>
+        <button id='highlight-template' data-qif='false'>Show highlights</button>
     </body>
 </html>
