@@ -102,8 +102,11 @@ tally = (root, obj) ->
     list = root.querySelectorAll("*[" + qdup + "]")
     node.parentNode.removeChild node  while (node = list[pos++])
     pos = 0
+
   listStack = [(if querySelectorAll then root.querySelectorAll(TAL) else root.getElementsByTagName("*"))]
+
   list = [root]
+
   loop
     node = list[pos++]
 
@@ -112,7 +115,7 @@ tally = (root, obj) ->
     while not node and (list = listStack.pop())
       pos = posStack.pop()
       node = list[pos++]
-    break  unless node
+    break unless node
 
     #creates a shortcut to an object
     #e.g., <section qdef="feeds main.sidebar.feeds">
@@ -175,7 +178,7 @@ tally = (root, obj) ->
           pos += node.querySelectorAll(TAL).length
         else
           pos += node.getElementsByTagName("*").length
-        if obj.aralbalkan isnt `undefined` and obj.aralbalkan.tallyRunningInNode
+        if obj.__tally isnt `undefined` and obj.__tally.server
           node.parentNode.removeChild node
         else
           node.style.display = "none"
@@ -188,6 +191,7 @@ tally = (root, obj) ->
     #of the loop.
     #e.g., <div qrepeat="item feeds.items">
     attr = node.getAttribute(qrepeat)
+
     if attr
       attr2 = attr.split(" ")
 
@@ -202,7 +206,7 @@ tally = (root, obj) ->
       if objList and objList.length
 
         # Don’t set the style if on the server (as we don’t on anything)
-        node.style.display = ""  if obj.aralbalkan is `undefined`
+        node.style.display = ""  if obj.__tally is `undefined` or obj.__tally.server is no
 
         #allow this node to be treated as index zero in the repeat list
         #we do this by setting the shortcut variable to array[0]
@@ -212,7 +216,7 @@ tally = (root, obj) ->
 
         # Handling hiding differently depending on whether this is running on the
         # client or as part of Tally on the server.
-        if obj.aralbalkan isnt `undefined` and obj.aralbalkan.tallyRunningInNode
+        if obj.__tally isnt `undefined` and obj.__tally.server
 
           # Running in Tally as part of Express.
           # Delete the node

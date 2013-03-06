@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title data-tally-text='title'></title>
+
+    <style type='text/css'>
+        body { max-width: 300px; margin: 0 auto;}
+        img { max-width:250px; }
+    </style>
+
+    <link data-tally-if='false' rel='stylesheet' type='text/css' href='tally-highlights.css'>
+    <script data-tally-if='false' src='tally-highlights.js'></script>
+</head>
+<body>
+    <h1 data-tally-text='title'>A placeholder title</h1>
+
+    <p>Hello from <span data-tally-text='name'>name of the templating engine</span>!<p>
+
+    <p data-tally-text='content'>This paragraph is a placeholder.</p>
+
+    <p><a data-tally-attr='href newURL' href='/'>This should link to Aral’s homepage.</a></p>
+
+    <p><a data-tally-attr='href correctURLFragment fullURL' href='http://aralbalkan.com'>This should link to the Modern iOS Development workshop.</a></p>
+
+    <p>This should be Aral’s headshot:</p>
+
+    <img data-tally-attr='src aralImageURL' src='http://placehold.it/250x250'>
+
+    <h2>Friends and their skills</h2>
+
+    <ul>
+        <li data-tally-repeat='friend friends'>
+            <p><span data-tally-text='friend.name'>Name</span> knows <span data-tally-text='friend.skills'>skills</span>.</p>
+        </li>
+        <li data-tally-if='false'>
+            <p>Some sample content.</p>
+        </li>
+        <li data-tally-if='false'>
+            <p>That could help when styling the page.</p>
+        </li>
+    </ul>
+
+    <p data-tally-if='not:friends'>Error: No friends found.</p>
+
+    <div id='tallyControls'>
+        <button data-tally-if='false' id='highlightTemplate'>Show highlights</button>
+    </div>
+
+</body>
+</html>
