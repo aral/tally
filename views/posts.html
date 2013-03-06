@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 	<meta charset='utf-8'>
-	<title></title>
+	<title>App.net Global Timeline</title>
 	<meta name='viewport' content='width=device-width'>
 	<link rel='stylesheet' type='text/css' href='posts.css'>
 
@@ -14,17 +14,17 @@
 	<p>The latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
 		<li data-tally-repeat='post data'>
-			<img data-tally-attr='src post.user.avatar_image.url' src='http://placehold.it/100x100' alt='User name’s avatar'>
+			<img data-tally-attr='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
 
-			<p><a class='user' data-tally-attr='href post.user.canonical_url' data-tally-text='post.user.name' href=''>Jane Person</a>
+			<p><a class='user' data-tally-attr='href post.user.canonical_url' data-tally-text='post.user.name' href=''>Jane User</a>
 
 			<span class='postText' data-tally-text='post.text'>This is a sample post. This list item will be the one that is used as the prototype for the final list. Working with actual content as a place‐holder means you can do things like add (and style) <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK.</span></p>
 
 		</li>
 
-		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John Person</a> <span class='postText'>This is another sample post. These will only display when viewing the unprocessed template to help you tweak the design of the page.</span></li>
+		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John User</a> <span class='postText'>This is another sample post. These will only display when viewing the unprocessed template to help you tweak the design of the page.</span></li>
 
-		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John Person</a> <span class='postText'>By the way, did we mention that you can learn how to make native iPhone and iPad apps using Objective-C and Cocoa Touch in just three days of hands‐on coding with Aral at his <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in Brighton this April?</p><p>Oh, we did, ah… well, at least that’s filled up this longer post sample that has multiple paragraphs so that we can design for that eventuality.</span></li>
+		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>Osky Kalbag</a> <span class='postText'>By the way, did we mention that you can learn how to make native iPhone and iPad apps using Objective-C and Cocoa Touch in just three days of hands‐on coding with Aral at his <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in Brighton this April?</p><p>Oh, we did, ah… well, at least that’s filled up this longer post sample that has multiple paragraphs so that we can design for that eventuality.</span></li>
 
 		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>Yet A. Nother-Person</a> <span class='postText'>By using a range of copy&#8202;—&#8202;and actual content&#8202;—&#8202; you can get a better feel for the constraints of your design e.g., what happens with really long URLs like this: http://thisisareallylongurlohmyyourerightitisaverylongurlwhatlongurlsyouhavegrandma.com</p></li>
 
