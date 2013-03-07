@@ -11,6 +11,9 @@
       ,  "superagent": "0.12.4"
       , "coffee-script": "1.6.1"
   }
-  ,  "author": "Aral Balkan <aral@aralbalkan.com>"
+  , "author": "Aral Balkan <aral@aralbalkan.com>"
+  , "contributors": [
+    { "email": "mocking@gmail.com" }
+  ]
   , "license": "MIT"
 }
