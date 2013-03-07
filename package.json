@@ -1,8 +1,13 @@
 {
     "name": "tally"
+  , "description": "Tally is a simple, unobtrusive JavaScript template engine for Express/Node and browser."
   , "version": "0.0.1"
-  , "description": "Tally is a simple, unobtrusive JavaScript template engine for Node and browser."
-  , "main": "index.js"
+  , "author": "Aral Balkan <aral@aralbalkan.com>"
+  , "repository": {
+      "type": "git"
+    , "url": "https://github.com/aral/tally.git"
+  }
+  , "main": "./lib/tally-express.js"
   , "dependencies": {
       "jsdom": "0.5.1"
     }
@@ -11,9 +16,15 @@
       ,  "superagent": "0.12.4"
       , "coffee-script": "1.6.1"
   }
-  , "author": "Aral Balkan <aral@aralbalkan.com>"
   , "contributors": [
-    { "email": "mocking@gmail.com" }
+    {
+      "email": "mocking@gmail.com" }
   ]
   , "license": "MIT"
+  , "keywords": ["unobtrusive", "template", "templating", "express", "client"]
+  , "homepage": "http://tally.is"
+  , "bugs": {
+        "url": "https://github.com/aral/tally/issues"
+      , "email": "aral@aralbalkan.com"
+    }
 }
