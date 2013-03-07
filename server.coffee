@@ -39,6 +39,9 @@ createRoute '/posts'
 # App.net global timeline example with profiling.
 createRoute '/profile'
 
+# A route to render the readme.md file
+createRoute '/readme'
+
 app.listen 3000
 
 console.log '\nServer running… visit http://localhost:3000/ to play with the Tally examples.\n'
