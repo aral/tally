@@ -24,7 +24,7 @@ data =
             {name: 'Natalie', skills: 'HTML, CSS'}
         ]
 
-exports.simple = (request, response) ->
+exports.route = (request, response) ->
 
     # Custom formatters
     data.__tally = {
@@ -33,5 +33,5 @@ exports.simple = (request, response) ->
                 return 'http://' + value + '.com'
     }
 
-    response.render 'simple.html', data
+    response.render 'simple', data
 

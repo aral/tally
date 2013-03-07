@@ -7,7 +7,7 @@
 
 [data-tally-repeat].show:before
 {
-    content: url('repeat.png');
+    content: url('/images/repeat.png');
     float:right;
 }
 

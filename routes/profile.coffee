@@ -1,7 +1,18 @@
-superagent = require 'superagent'
-timer = require './lib/timer.coffee'
+################################################################################
+#
+# Tally App.net posts example (with timer profiling)
+#
+# Displays the global timeline from App.net and profiles the template render.
+#
+# Copyright © 2013, Aral Balkan.
+# Released under the MIT license. (http://opensource.org/licenses/MIT)
+#
+################################################################################
 
-exports.profile = (request, response) ->
+superagent = require 'superagent'
+timer = require '../lib/timer.coffee'
+
+exports.route = (request, response) ->
 
     # Time the data call
     timer.reset()
@@ -19,8 +30,8 @@ exports.profile = (request, response) ->
 
                 # Time the template render
                 timer.reset()
-                response.render 'posts.html', globalTimelineResponse.body
+                response.render 'posts', globalTimelineResponse.body
                 timer.elapsedTime('Template render')
 
             else
-                response.render 'posts.html', {error: 'Bad response from Twitter'}
+                response.render 'posts', {error: 'Bad response from Twitter'}
