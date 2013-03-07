@@ -11,13 +11,19 @@
     float:right;
 }
 
-[data-tally-if^='not:'].show, [data-tally-if^='error'].show
+[data-tally-if].show
+{
+    border: 1px dashed blue;
+}
+
+[data-tally-if^='error'].show
 {
     border: 1px dotted red;
 }
 
 [data-tally-if='false'].show
 {
+    border: none;
 	opacity: 0.25;
 }
 

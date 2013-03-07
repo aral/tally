@@ -26,7 +26,7 @@ data =
 
 exports.route = (request, response) ->
 
-    # Custom formatters
+    # Custom formatter
     data.__tally = {
         formatters:
             fullURL: (value) ->

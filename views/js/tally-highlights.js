@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
 
     button.addEventListener ('click', function() {
 
-        var nodes = document.querySelectorAll ('[data-tally-repeat], [data-tally-text], [data-tally-attr], [data-tally-if^="not:"], [data-tally-repeat], [data-tally-if="false"], [data-tally-if^="error"]');
+        var nodes = document.querySelectorAll ('[data-tally-repeat], [data-tally-text], [data-tally-attr], [data-tally-if^="error"], [data-tally-if^="not:"], [data-tally-repeat], [data-tally-if="false"]');
 
         for (var i = 0; i < nodes.length; i++) {
             var node = nodes[i];
