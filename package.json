@@ -1,7 +1,7 @@
 {
     "name": "tally"
   , "version": "0.0.1"
-  , "description": "Tally is an unobtrusive templating engine for Express 3."
+  , "description": "Tally is a simple, unobtrusive JavaScript template engine for Node and browser."
   , "main": "index.js"
   , "dependencies": {
       "jsdom": "0.5.1"
