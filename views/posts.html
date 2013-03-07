@@ -13,7 +13,7 @@
 	<h1>App.net Global Timeline</h1>
 	<p>The latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
-		<li data-tally-repeat='post data'>
+		<li data-tally-if='not:error' data-tally-repeat='post data'>
 			<img data-tally-attr='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
 
 			<p><a class='user' data-tally-attr='href post.user.canonical_url' data-tally-text='post.user.name' href=''>Jane User</a>
@@ -28,7 +28,8 @@
 
 		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>Yet A. Nother-Person</a> <span class='postText'>By using a range of copy&#8202;—&#8202;and actual content&#8202;—&#8202; you can get a better feel for the constraints of your design e.g., what happens with really long URLs like this: http://thisisareallylongurlohmyyourerightitisaverylongurlwhatlongurlsyouhavegrandma.com</p></li>
 
-		<li data-tally-if='not:numberOfPosts'>There are no posts to display.</li>
+		<!-- Display an error message for network & App.net errors -->
+		<li data-tally-if='error'><span data-tally-text='errorType'>(Error type)</span> error: <span data-tally-text='error'>the network or App.net error message</span>.</li>
 	</ul>
 
 	<div id='tallyControls'>

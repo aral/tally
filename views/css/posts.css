@@ -78,7 +78,7 @@ p:last-child
 	margin-right: 0.5em; /* 6px/12px */
 }
 
-[data-tally-if='not:numberOfPosts']
+[data-tally-if='error']
 {
 	background-color: transparent;
 	color: red;
