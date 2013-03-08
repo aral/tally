@@ -33,3 +33,9 @@ footer
 	border-top:1px solid #000;
 	font-size:small
 }
+
+#short-description
+{
+	text-align: center;
+	color: #777;
+}
