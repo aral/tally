@@ -1,5 +1,4 @@
-Tally
-===
+<img src='http://aralbalkan.com/images/tally-logo.svg' style='width:100%; margin-bottom: 1.5em;'>
 
 Tally is a simple, unobtrusive, design‐led JavaScript template engine for Node and client.
 

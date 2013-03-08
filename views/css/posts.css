@@ -116,7 +116,7 @@ p:last-child
 [data-tally-if='error']
 {
 	background-color: transparent;
-	color: red;
+	color: #E33838;
 }
 
 @media all and (max-width:524px)

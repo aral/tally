@@ -13,12 +13,12 @@
 
 [data-tally-if].show
 {
-    border: 1px dashed blue;
+    border: 1px dashed #3892E3;;
 }
 
 [data-tally-if^='error'].show
 {
-    border: 1px dotted red;
+    border: 1px dotted #E33838;
 }
 
 [data-tally-if='false'].show

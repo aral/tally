@@ -1,0 +1,35 @@
+html
+{
+	padding: 0 24px;
+}
+
+body
+{
+	max-width:480px;
+	margin:24px auto;
+	font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif
+}
+
+h1,h2
+{
+	font-weight:500
+}
+
+li
+{
+	margin: 12px 0;
+}
+
+a
+{
+	text-decoration: none;
+	color: #3892E3;
+
+}
+
+footer
+{
+	margin-top:48px;
+	border-top:1px solid #000;
+	font-size:small
+}
