@@ -15,9 +15,10 @@ body
 
 h1
 {
-	font-size: 3.75em; /* 48px/16px */
+	font-size: 3.75em; /* 60px/16px */
 	font-weight: 500;
-	line-height: 1.333333333; /* 48px/36px */
+	line-height: 1.2em; /* 48px/48px */
+	margin: .4em 0;		/* 24px/60px */
 }
 
 a
@@ -29,7 +30,7 @@ a
 
 ul
 {
-	margin-top: 2.25em; /* 36px/16px */
+	margin-top: 1.5em; /* 36px/16px */
 	padding: 0;
 }
 
@@ -118,7 +119,7 @@ p:last-child
 	color: red;
 }
 
-@media all and (max-width:512px)
+@media all and (max-width:524px)
 {
 	html {
 		padding: 0 12px;
