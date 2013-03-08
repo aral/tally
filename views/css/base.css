@@ -7,12 +7,19 @@ body
 {
 	max-width:480px;
 	margin:24px auto;
+	line-height: 24px;
 	font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif
 }
 
 h1,h2
 {
-	font-weight:500
+	font-weight:500;
+	margin-bottom: 24px;
+}
+
+ul
+{
+	margin-bottom: 24px;
 }
 
 li
@@ -24,18 +31,19 @@ a
 {
 	text-decoration: none;
 	color: #3892E3;
-
 }
 
 footer
 {
-	margin-top:48px;
+	margin-top:36px;
 	border-top:1px solid #000;
-	font-size:small
+	font-size:small;
+	line-height: 18px;
 }
 
 #short-description
 {
 	text-align: center;
 	color: #777;
+	margin-bottom: 24px;
 }
