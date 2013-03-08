@@ -16,6 +16,7 @@ limitations under the License.
 
 Forked from Distal by mocking@gmail.com (https://code.google.com/p/distal/)
 ###
+
 tally = (root, obj) ->
   "use strict"
 

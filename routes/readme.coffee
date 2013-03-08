@@ -3,9 +3,15 @@ fs = require 'fs'
 
 exports.route = (request, response) ->
 	fs.readFile __dirname + '/../readme.md', 'utf-8', (error, markdown) ->
+		data = {}
+
 		if error
 			response.status(404)
-			response.render 'readme'
+			data.title = 'Could not find the readme.md file.'
+			data.error = yes
 		else
 			readme = githubFlavouredMarkdown.parse(markdown)
-			response.status(200).send(readme)
+			data.title = 'Read me!'
+			data.readme = readme
+
+		response.render 'readme', data

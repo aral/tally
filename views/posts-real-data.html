@@ -24,7 +24,14 @@
 
 		</li>
 
-		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>John User</a> <span class='postText'>This is another sample post. These will only display when viewing the unprocessed template to help you tweak the design of the page.</span></li>
+		<li data-tally-if='false'>
+			<img data-tally-attr="src post.user.avatar_image.url; alt post.user.name" src="https://d2rfichhc2fb9n.cloudfront.net/image/5/OKiE6bmnN2m0P1JpVUzYnggEaEJ7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvODQvMGUvMTAvODQwZTEwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0" alt="Matthew Sanderson">
+
+			<p><a class="user" data-tally-attr="href post.user.canonical_url" data-tally-text="post.user.name" href="https://alpha.app.net/mksanderson">Matthew Sanderson</a>
+
+			<span class="postText" data-tally-text="html post.html"><span itemscope="https://app.net/schemas/Post">Just listened to the new Jimi Hendrix album on <span itemprop="mention" data-mention-id="47694" data-mention-name="rdio"><a href="http://alpha.app.net/rdio" alt="rdio on App.net.">@rdio</a></span> and now it’s times for the new David Bowie album. <span itemprop="hashtag" data-hashtag-name="thisis2013right">#thisis2013right</span> <span itemprop="hashtag" data-hashtag-name="notcomplaining">#notcomplaining</span></span></span></p>
+
+		</li>
 
 		<li data-tally-if='false'><img src='http://placehold.it/100x100' alt='User name’s avatar'><p><a class='user' href=''>Osky Kalbag</a> <span class='postText'>By the way, did we mention that you can learn how to make native iPhone and iPad apps using Objective-C and Cocoa Touch in just three days of hands‐on coding with Aral at his <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in Brighton this April?</p><p>Oh, we did, ah… well, at least that’s filled up this longer post sample that has multiple paragraphs so that we can design for that eventuality.</span></li>
 

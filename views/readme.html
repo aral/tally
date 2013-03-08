@@ -2,10 +2,12 @@
 <html lang='en'>
 <head>
 	<meta charset='utf-8'>
-	<title data-tally-text='title'>Sorry, I could not find the readme.md file.</title>
+	<title data-tally-text='title'>Default title</title>
 </head>
 <body>
-	<h1>Sorry, I could not find the readme.md file.</h1>
+	<h1 data-tally-if='error' data-tally-text='title'>Error message</h1>
+
+	<section role='main' data-tally-text='html readme'></section>
 
 	<p><a href='/'>Return to the index.</a></p>
 </body>
