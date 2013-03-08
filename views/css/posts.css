@@ -103,6 +103,15 @@ p:last-child
 	color: #404040; /* Regular body text color */
 }
 
+[itemprop='mention'], [itemprop='hashtag']
+{
+	/* Don’t break mentions or hashtags */
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	hyphens: manual;
+
+}
+
 [data-tally-if='error']
 {
 	background-color: transparent;
