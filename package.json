@@ -1,35 +1,46 @@
 {
-    "name": "tally"
-  , "description": "Tally is a simple, unobtrusive JavaScript template engine for Express/Node and browser."
-  , "version": "0.0.1"
-  , "author": "Aral Balkan <aral@aralbalkan.com>"
-  , "repository": {
-      "type": "git"
-    , "url": "https://github.com/aral/tally.git"
-  }
-  , "main": "./lib/tally-express.coffee"
-  , "scripts": {
-    "start": "nodemon server.coffee"
-  }
-  , "dependencies": {
-      "jsdom": "0.5.1"
-    }
-  , "devDependencies": {
-        "express": "3.0.x"
-      ,  "superagent": "0.12.4"
-      , "coffee-script": "1.6.1"
-      , "nodemon": "0.7.2"
-      , "ghm": "1.0.0-3"
-  }
-  , "contributors": [
-    {
-      "email": "mocking@gmail.com" }
-  ]
-  , "license": "MIT"
-  , "keywords": ["unobtrusive", "template", "templating", "express", "client"]
-  , "homepage": "http://tally.is"
-  , "bugs": {
-        "url": "https://github.com/aral/tally/issues"
-      , "email": "aral@aralbalkan.com"
+    "name": "tally",
+    "description": "Tally is a simple, unobtrusive JavaScript template engine for Express/Node and browser.",
+    "version": "0.0.1-3",
+    "author": "Aral Balkan <aral@aralbalkan.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aral/tally.git"
+    },
+    "main": "./lib/tally-express.coffee",
+    "scripts": {
+        "start": "coffee server.coffee"
+    },
+    "dependencies": {
+        "jsdom": "0.5.1",
+        "express": "3.0.x",
+        "superagent": "0.12.4",
+        "ghm": "1.0.0-3"
+    },
+    "devDependencies": {
+        "nodemon": "0.7.2",
+        "coffee-script": "1.6.1"
+    },
+    "contributors": [
+        {
+            "email": "mocking@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "keywords": [
+        "unobtrusive",
+        "template",
+        "templating",
+        "express",
+        "client"
+    ],
+    "homepage": "http://tally.is",
+    "bugs": {
+        "url": "https://github.com/aral/tally/issues",
+        "email": "aral@aralbalkan.com"
+    },
+    "subdomain": "tally",
+    "engines": {
+        "node": "0.8.x"
     }
 }
