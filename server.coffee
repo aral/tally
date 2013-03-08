@@ -28,6 +28,7 @@ app.set 'view engine', 'html'
 app.set 'views', __dirname + '/views'
 app.use express.static('views')
 
+# Index: links to the readme and examples.
 createRoute '/'
 
 # Simple template example (with static data)

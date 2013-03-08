@@ -18,6 +18,7 @@
         "express": "3.0.x"
       ,  "superagent": "0.12.4"
       , "coffee-script": "1.6.1"
+      , "nodemon": "0.7.2"
       , "ghm": "1.0.0-3"
   }
   , "contributors": [
