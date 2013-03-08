@@ -2,6 +2,8 @@
     A simple little script that finds all the App.net mentions and hashtags
     (as returned in the data.html property of the response envelope from the API)
     and makes them into links.
+
+    Copyright © 2013, Aral Balkan. Released under the MIT license.
 */
 
 window.addEventListener('load', function(){
