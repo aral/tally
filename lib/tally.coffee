@@ -362,7 +362,7 @@ tally = (root, obj) ->
             when "text" #option.text unstable in IE
               node[(if querySelectorAll then name else innerText)] = value
             when "class"
-              name = "className"
+              node["className"] = value
             else
               node[name] = value
         else
