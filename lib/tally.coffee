@@ -92,7 +92,7 @@ tally = (root, obj) ->
   pos = 0
   attr = undefined
   attr2 = undefined
-  `undefined = {}._`
+  `var undefined = {}._`
 
   #get a list of concerned nodes within this root node. If querySelectorAll is
   #supported we use that but it is treated differently because it is a non-live NodeList.
@@ -166,7 +166,7 @@ tally = (root, obj) ->
       else
         attr = obj2
       if attr
-        node.style.display = ""  if obj.aralbalkan is `undefined`
+        node.style.display = ""  if obj.__tally is `undefined`
       else
 
         # Handle hiding differently based on whether we are running in Express
@@ -272,7 +272,7 @@ tally = (root, obj) ->
         tmpNode = doc.createElement("div")
 
         #workaround for IE which can't innerHTML tables and selects
-        if "cells" of node and ("tBodies" of node) #TR
+        if "cells" of node and not ("tBodies" of node) #TR
           tmpNode.innerHTML = "<table>" + html + "</table>"
           tmpNode = tmpNode.firstChild.tBodies[0].childNodes
         else if "cellIndex" of node #TD
@@ -316,6 +316,7 @@ tally = (root, obj) ->
             #the root node so the newly created nodes are adjacent to the root
             #and so won't appear in the NodeList, or (2) we are dealing with a
             #non-live NodeList, so we need to add them to the listStack
+            console.log('List stack: ' + listStack);
             listStack.push (if querySelectorAll then html.querySelectorAll(TAL) else html.getElementsByTagName("*"))
             posStack.push 0
             listStack.push [html]

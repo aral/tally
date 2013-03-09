@@ -6,7 +6,7 @@ exports.route = (request, response) ->
 		data = {}
 
 		if error
-			response.status(404)
+			response.status 404
 			data.title = 'Could not find the readme.md file.'
 			data.error = yes
 		else

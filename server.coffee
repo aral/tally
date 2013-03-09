@@ -43,6 +43,11 @@ createRoute '/profile'
 # A route to render the readme.md file
 createRoute '/readme'
 
+# If /js/tally.js is requested, get it from the lib folder
+# (so I don’t have to keep remembering to deploy it to the client)
+createRoute '/tally.js'
+
+
 app.listen 3000
 
 console.log '\nServer running… visit http://localhost:3000/ to play with the Tally examples.\n'

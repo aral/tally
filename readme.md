@@ -15,7 +15,6 @@ Start the server to play with the examples:
 
 Go to [http://localhost:3000](http://localhost:3000/) and play with the examples.
 
-
 Credits
 ---
 
