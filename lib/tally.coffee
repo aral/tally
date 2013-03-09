@@ -316,7 +316,6 @@ tally = (root, obj) ->
             #the root node so the newly created nodes are adjacent to the root
             #and so won't appear in the NodeList, or (2) we are dealing with a
             #non-live NodeList, so we need to add them to the listStack
-            console.log('List stack: ' + listStack);
             listStack.push (if querySelectorAll then html.querySelectorAll(TAL) else html.getElementsByTagName("*"))
             posStack.push 0
             listStack.push [html]
