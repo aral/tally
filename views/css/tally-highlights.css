@@ -27,9 +27,9 @@
 	opacity: 0.25;
 }
 
-#highlightTemplate
+#highlightTemplate, #renderTemplate
 {
-    display: block;
+    /*display: block;*/
     width: 200px;
     height: 30px;
     font-size: 16px;
@@ -43,4 +43,5 @@
     left: 0;
     background-color: gray;
     width: 100%;
+    text-align: center;
 }

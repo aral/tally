@@ -1,0 +1,126 @@
+body
+{
+  width:100%;
+  max-width:960px;
+  /* little bit of margin to compensate for the fixed controls at the bottom of the screen */
+  margin-bottom: 100px;
+}
+
+html
+{
+  padding: 48px;
+}
+
+nav
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  padding: 0px;
+  padding-left: 0px;
+}
+
+nav h1
+{
+  color: black;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 6px;
+}
+
+div[role='main']
+{
+  font-size:14px;
+  -moz-column-gap: 48px;
+  -webkit-column-gap: 48px;
+  column-gap: 48px;
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
+}
+
+section
+{
+  margin: 48px 0;
+  /*background-color: #eee;*/
+  -webkit-column-break-inside:avoid;
+  -moz-column-break-inside:avoid;
+  -o-column-break-inside:avoid;
+  -ms-column-break-inside:avoid;
+  column-break-inside:avoid;
+}
+
+section:first-child
+{
+  margin-top: 0;
+}
+
+/* Tables */
+tr, table, td, th { border: none; margin: 0; padding: 0; border-spacing: 0;}
+table { width: 100%; border: 1px solid gray; }
+th { background-color: lightgray; text-align: left; border-bottom: 1px solid gray; padding-left: 12px;}
+tr:nth-child(2n+1), option:nth-child(2n+1) { background-color: #eee;}
+td { border-left: 1px solid gray;}
+td:first-child {border-left:0;}
+
+td
+{
+  padding:0 12px;
+  width:30%;
+  vertical-align:top
+}
+
+li { margin: 0 12px; }
+header { margin-bottom: 48px; }
+
+h2
+{
+  background-color: #eee;
+  text-align:center;
+  font-size: 1em;
+  padding: 3px;
+  margin: 12px 0;
+}
+h2:first-child { margin-top: 0;}
+
+select
+{
+  width: 100%;
+}
+
+.bluish
+{
+  background: rgba(56,146,227,0.41);
+}
+
+/* Reduce number of columns on narrower browser widths */
+
+@media all and (max-width: 900px)
+{
+  div[role='main']
+  {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+
+@media all and (max-width: 580px)
+{
+  div[role='main']
+  {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+
+  html { padding: 0 12px; }
+  h1 { margin-bottom: 24px; }
+  section { margin: 24px 0; }
+}
+
+
+
+

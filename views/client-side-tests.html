@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width'>
+  <title>Tally client‐side tests</title>
+
+  <link rel="stylesheet" type="text/css" href="css/base.css">
+  <link rel="stylesheet" type="text/css" href="css/client-side-tests.css">
+  <link rel="stylesheet" type="text/css" href="css/tally-highlights.css">
+
+  <!-- Tally engine -->
+  <script src="/tally.js"></script>
+
+  <script>
+    // This is the data that will be used to render the template.
+    var data = {
+      list: ["one", "two", "three"],
+      listHTML: ["<b>&nbsp;apple</b>", "<i>banana&copy;</i>", "<u>carrot</u>"],
+      oneList: ["only one bullet!"],
+      emptyList: [],
+      nullList: null,
+      value: 5,
+      floater: 33333.333333,
+      text: "brown fox jumped",
+      klass: "bluish",
+      ztyle: "background:pink",
+      func: function(v) {return v + ": " + this.text;},
+      truthy: true,
+      homepage: "http://www.google.com",
+      indented: {indented: {cool: "indented stuff", func: function(v) {return v + ": " + this.cool;}}}
+    };
+
+    // When the window loads…
+    window.addEventListener('load', function(){
+
+      // Set up a click handler for the Render template button.
+      document.getElementById('renderTemplate').addEventListener('click', function(){
+        // Render the template using the data.
+        tally(document.body, data)
+      });
+    });
+
+  </script>
+
+  <script type="text/javascript" src="js/tally-highlights.js"></script>
+<head>
+<body>
+  <header>
+    <h1>Tally client‐side tests</h1>
+
+    <p>Adapted from the <a href='http://distal.googlecode.com/svn/trunk/testcase.htm'>Distal test cases</a>.</p>
+  </header>
+
+  <nav>
+    <h1><a href='/'>Home</a></h1>
+  </nav>
+
+  <div id='tests' role='main'>
+    <section>
+      <h2>data-tally-repeat</h2>
+      <ul>
+        <li data-tally-repeat="m list" data-tally-text="m">(There will be 3 bullets)</li>
+      </ul>
+      <span data-tally-repeat="m list">
+        <!-- Don’t add the comma before the first item in the list. -->
+        <span data-tally-dummy>three, comma‐separated</span><span data-tally-if="# ne 1">, </span>
+        <span data-tally-text="m">items</span>
+    </span>
+    </section>
+
+    <section>
+      <h2>data-tally-repeat (with html)</h2>
+      <ul>
+        <li data-tally-repeat="m listHTML" data-tally-text="html m">(There will be 3 html bullets)</li>
+        <li data-tally-repeat="m listHTML" data-tally-text="m">(There will be 3 escaped bullets)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>data-tally-repeat (of list options &amp; groups)</h2>
+      <select size=7>
+        <option data-tally-repeat="m list" data-tally-attribute="text m">(There will be 3 options)</option>
+        <optgroup data-tally-repeat="m list" data-tally-attribute="label m" label="(and 3 groups)"><option data-tally-text="m"></option></optgroup>
+      </select>
+    </section>
+
+    <section>
+      <h2>data-tally-repeat (with array length of 1)</h2>
+      <ul>
+        <li data-tally-repeat="m oneList" data-tally-text="m">(There will be 1 bullet)</li>
+        <li data-tally-dummy="1">(There will be 1 bullet)</li>
+        <li data-tally-dummy="1">(There will be 1 bullet)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>data-tally-repeat (with null array)</h2>
+      <ul>
+        <li>there will only be 1 bullet (cost: $<span data-tally-text="floater ,.">1,000.00</span>)
+          <ol><li data-tally-repeat="m nullList" data-tally-text="m">(this will not show)</li></ol>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>data-tally-repeat (of table rows)</h2>
+      <table border=1>
+        <tr><th>#</th><th>Age</th></tr>
+        <tr data-tally-repeat="m list"><td data-tally-text="#"></td><td data-tally-text="m">(test)</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>data-tally-if</h2>
+      <ul>
+        <li data-tally-if="value">5 is truthy</li>
+        <li data-tally-if="nullList">null is falsy</li>
+        <li data-tally-if="value gt 3">5 &gt; 3</li>
+        <li data-tally-if="value gt 4">5 &gt; 4</li>
+        <li data-tally-if="value gt 4.5">5 &gt; 4.5</li>
+        <li data-tally-if="value lt 4">5 &lt; 4, hide me!</li>
+        <li data-tally-if="value lt 6">5 &lt; 6</li>
+        <li data-tally-if="value eq 5">5 == 5</li>
+        <li data-tally-if="value ne 5">5 != 5, hide me!</li>
+        <li data-tally-if="not:truthy">not true, hide me!</li>
+        <li data-tally-if="text cn brown fox">"brown fox jumped" contains "brown fox"</li>
+        <li data-tally-if="text nc brown">"brown fox jumped" doesn't contain "brown", hide me!</li>
+        <li data-tally-if="text cn bird">"brown fox jumped" contains "bird", hide me!</li>
+        <li data-tally-if="text nc bird">"brown fox jumped" doesn't contain "bird"</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>data-tally-attribute (with class name)</h2>
+      <span data-tally-attribute="class klass">make class .bluish</span><br>
+      <span data-tally-attribute="style ztyle">make css pink</span>
+    </section>
+
+    <section>
+      <h2>data-tally-attribute</h2>
+      <input type="text" size=30 value="...." data-tally-attribute="value indented.indented.cool; title indented.indented.func"><br>
+      <fieldset>
+        <legend data-tally-text="text">(...)</legend>
+        <input type="text" size=20 value="float with commas" data-tally-attribute="value floater ,.; title floater ,.">
+        <input type="text" size=10 value="(zero)" data-tally-text="emptyList.length">
+      </fieldset>
+      <textarea rows=2 cols=15 data-tally-attribute="value text" title="ok"></textarea><br>
+      <u><label for="tt" data-tally-text="text">Label</label>:</u> <input id="tt" type="checkbox" data-tally-attribute="checked truthy" title="ok"><br>
+      <input type="button" value="disable me" data-tally-attribute="disabled truthy; title text">
+      <button type="reset" data-tally-attribute="value text" data-tally-text="text">b<b>utto</b>n</button><br>
+      <a href="javascript:void(0);" data-tally-attribute="href homepage; title text" title="see tooltip" data-tally-text="text">see tooltip</a>
+    </section>
+  </div>
+
+  <div data-tally-dummy id='tallyControls'>
+    <button id='highlightTemplate'>Show highlights</button>
+    <button id='renderTemplate'>Render template</button>
+  </div>
+
+
+</body>
+</html>
