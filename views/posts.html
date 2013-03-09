@@ -16,9 +16,9 @@
 	<p>The latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
 		<li data-tally-if='not:error' data-tally-repeat='post data'>
-			<img data-tally-attr='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
+			<img data-tally-attribute='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
 
-			<p><a class='user' data-tally-attr='href post.user.canonical_url' data-tally-text='post.user.name' href=''>Jane User</a>
+			<p><a class='user' data-tally-attribute='href post.user.canonical_url' data-tally-text='post.user.name' href=''>Jane User</a>
 
 			<span class='postText' data-tally-text='html post.html'>This is a sample post. This list item will be the one that is used as the prototype for the final list. Working with actual content as a place‐holder means you can do things like add (and style) <a href='http://aralbalkan.com'>links</a>, like this one to Aral’s <a href='http://moderniosdevelopment.com'>Modern iOS Development Workshop</a> in April, 2013 in the UK.</span></p>
 

@@ -65,7 +65,7 @@ tally = (root, obj) ->
   beforeText = qdef.beforeText
   qif = qdef.qif or "data-tally-if"
   qrepeat = qdef.qrepeat or "data-tally-repeat"
-  qattr = qdef.qattr or "data-tally-attr"
+  qattr = qdef.qattr or "data-tally-attribute"
   qtext = qdef.qtext or "data-tally-text"
   qdup = qdef.qdup or "data-tally-dummy"
 

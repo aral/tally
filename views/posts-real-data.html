@@ -16,9 +16,9 @@
 	<p>The latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p>
 	<ul>
 		<li data-tally-if='not:error' data-tally-repeat='post data'>
-			<img data-tally-attr='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
+			<img data-tally-attribute='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
 
-			<p><a class='user' data-tally-attr='href post.user.canonical_url' data-tally-text='post.user.name' href=''>User’s Name</a>
+			<p><a class='user' data-tally-attribute='href post.user.canonical_url' data-tally-text='post.user.name' href=''>User’s Name</a>
 
 			<span class='postText' data-tally-text='html post.html'>This is a prototypical list item. It will be repeated by the Tally engine to create the list of posts. The other posts are all samples&#8202;—&#8202;containing real data&#8202;—&#8202;to help you style the page without requiring access to the server.</span></p>
 
