@@ -21,7 +21,7 @@
     border: 1px dotted #E33838;
 }
 
-[data-tally-if='false'].show
+[data-tally-if='false'].show, [data-tally-dummy].show
 {
     border: none;
 	opacity: 0.25;

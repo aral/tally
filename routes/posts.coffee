@@ -40,4 +40,4 @@ exports.route = (request, response) ->
             	globalTimeline.error = "(##{globalTimeline.meta.code}) #{globalTimeline.meta.error_message}"
 
             # Render the response
-            response.render 'posts-real-data', globalTimelineResponse.body
+            response.render 'posts', globalTimelineResponse.body

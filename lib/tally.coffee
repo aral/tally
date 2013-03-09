@@ -67,7 +67,7 @@ tally = (root, obj) ->
   qrepeat = qdef.qrepeat or "data-tally-repeat"
   qattr = qdef.qattr or "data-tally-attr"
   qtext = qdef.qtext or "data-tally-text"
-  qdup = qdef.qdup or "data-tally-dup"
+  qdup = qdef.qdup or "data-tally-dummy"
 
   #output formatter
   format = qdef.format
