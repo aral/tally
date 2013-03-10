@@ -116,7 +116,7 @@ select
     column-count: 1;
   }
 
-  html { padding: 0 12px; }
+  html { padding: 48px 12px; }
   h1 { margin-bottom: 24px; }
   section { margin: 24px 0; }
 }
