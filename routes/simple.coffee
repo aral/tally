@@ -23,6 +23,8 @@ data =
             {name: 'Seb', skills: 'particles, games, JavaScript, C++'},
             {name: 'Natalie', skills: 'HTML, CSS'}
         ]
+    templateClass: 'tab'
+    renderedClass: 'tab selected'
 
 exports.route = (request, response) ->
 
@@ -31,6 +33,9 @@ exports.route = (request, response) ->
         formatters:
             fullURL: (value) ->
                 return 'http://' + value + '.com'
+            isSelected: (value) ->
+                console.log('returning xxx')
+                return 'tab selected'
     }
 
     response.render 'simple', data

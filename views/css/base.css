@@ -13,7 +13,7 @@ body
 
 div[role='main']
 {
-	margin 0 auto;
+	margin: 0 auto;
 	max-width: 480px;
 }
 
@@ -85,11 +85,13 @@ footer
 	padding-bottom: 5px;
 	border-bottom: 1px solid gray;
 	text-align:right;
+	padding-top: 48px;
+	margin-bottom: 48px;
 }
 
 .tabs li
 {
-	display: inline;
+	/*display: inline;*/
 	border-top: 1px solid gray;
 	border-left: 1px solid gray;
 	border-right: 1px solid gray;
@@ -97,12 +99,20 @@ footer
 	padding: 6px 12px;
 	border-radius: 6px 6px 0 0 ;
 	background-color: #eee;
+	float:right;
+	margin-top: -32px;
 }
 
 li.selected
 {
 	background-color: #ccc;
 	color: white;
+	padding-bottom: 7px;
+}
+
+.invisible
+{
+	display:none;
 }
 
 @media all and (max-width: 400px)
@@ -114,9 +124,13 @@ li.selected
   }
   .tabs li
   {
-  	padding: 2px 6px;
+  	padding: 3px 6px;
   	margin-right: 2px;
-  	margin-bottom: -1px;
+  	/*margin-4ttom: -1px;*/
+  }
+  li.selected
+  {
+  	padding-bottom: 5px;
   }
 
 }

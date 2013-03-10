@@ -18,40 +18,43 @@
     </nav>
 
     <ul class='tabs'>
-        <a href='/simple.html'><li class='tab selected'>Template</li></a>
-        <a href='/simple'><li class='tab'>Rendered</li></a>
         <a href=''><li class='tab'>Source</li></a>
+        <a href='/simple'><li data-tally-attribute='class renderedClass' class='tab'>Rendered</li></a>
+        <a data-tally-dummy href='/simple.html'><li class='tab selected'>Template</li></a>
+        <a href='/simple.html'><li data-tally-attribute='class templateClass' class='invisible'>Template</li></a>
     </ul>
 
-    <h1 data-tally-text='title'>A placeholder title</h1>
+    <div role='main'>
+        <h1 data-tally-text='title'>A placeholder title</h1>
 
-    <p>Hello from <span data-tally-text='name'>name of the templating engine</span>!<p>
+        <p>Hello from <span data-tally-text='name'>name of the templating engine</span>!<p>
 
-    <p data-tally-text='content'>This paragraph is a placeholder.</p>
+        <p data-tally-text='content'>This paragraph is a placeholder.</p>
 
-    <p><a data-tally-attribute='href newURL' href='/'>This should link to Aral’s homepage.</a></p>
+        <p><a data-tally-attribute='href newURL' href='/'>This should link to Aral’s homepage.</a></p>
 
-    <p><a data-tally-attribute='href correctURLFragment fullURL' href='http://aralbalkan.com'>This should link to the Modern iOS Development workshop.</a></p>
+        <p><a data-tally-attribute='href correctURLFragment fullURL' href='http://aralbalkan.com'>This should link to the Modern iOS Development workshop.</a></p>
 
-    <p>This should be Aral’s headshot:</p>
+        <p>This should be Aral’s headshot:</p>
 
-    <img data-tally-attribute='src aralImageURL' src='http://placehold.it/600x600'>
+        <img data-tally-attribute='src aralImageURL' src='http://placehold.it/600x600'>
 
-    <h2>Friends and their skills</h2>
+        <h2>Friends and their skills</h2>
 
-    <ul>
-        <li data-tally-repeat='friend friends'>
-            <p><span data-tally-text='friend.name'>Name</span> knows <span data-tally-text='friend.skills'>skills</span>.</p>
-        </li>
-        <li data-tally-if='false'>
-            <p>Some sample content.</p>
-        </li>
-        <li data-tally-if='false'>
-            <p>That could help when styling the page.</p>
-        </li>
-    </ul>
+        <ul>
+            <li data-tally-repeat='friend friends'>
+                <p><span data-tally-text='friend.name'>Name</span> knows <span data-tally-text='friend.skills'>skills</span>.</p>
+            </li>
+            <li data-tally-if='false'>
+                <p>Some sample content.</p>
+            </li>
+            <li data-tally-if='false'>
+                <p>That could help when styling the page.</p>
+            </li>
+        </ul>
 
-    <p data-tally-if='not:friends'>No friends found.</p>
+        <p data-tally-if='not:friends'>No friends found.</p>
+    </div>
 
     <div id='tallyControls'>
         <button data-tally-if='false' id='highlightTemplate'>Show highlights</button>
