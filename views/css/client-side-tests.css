@@ -11,24 +11,6 @@ html
   padding: 48px;
 }
 
-nav
-{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #eee;
-  padding: 0px;
-  padding-left: 0px;
-}
-
-nav h1
-{
-  color: black;
-  font-size: 16px;
-  line-height: 16px;
-  margin: 6px;
-}
 
 div[role='main']
 {
@@ -119,6 +101,7 @@ select
   html { padding: 48px 12px; }
   h1 { margin-bottom: 24px; }
   section { margin: 24px 0; }
+
 }
 
 
