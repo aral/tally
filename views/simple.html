@@ -10,6 +10,13 @@
 
     <link data-tally-if='false' rel='stylesheet' type='text/css' href='css/tally-highlights.css'>
     <script data-tally-if='false' src='js/tally-highlights.js'></script>
+    <style type="text/css">
+        div[role='main']
+        {
+            margin: 0 auto;
+            max-width: 480px;
+        }
+    </style>
 </head>
 <body>
 
@@ -56,8 +63,8 @@
         <p data-tally-if='not:friends'>No friends found.</p>
     </div>
 
-    <div id='tallyControls'>
-        <button data-tally-if='false' id='highlightTemplate'>Show highlights</button>
+    <div data-tally-dummy id='tallyControls'>
+        <button id='highlightTemplate'>Show highlights</button>
     </div>
 
 </body>
