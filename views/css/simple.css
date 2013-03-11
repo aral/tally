@@ -10,13 +10,11 @@ html
 
 #template
 {
-    /*margin: 0 auto;*/
     width:320px;
     float:left;
     border: 1px dotted #E0D7D1;
     min-width: 348px;
     margin-right:24px;
-    /*display: block;*/
 }
 
 #template > div
@@ -29,9 +27,6 @@ html
 
 #source
 {
-	/*width: 40%;*/
-	/*float:right;*/
-	/*width: 480px;*/
 	min-width:300px;
 	float: left;
 	width: 30%;
@@ -108,8 +103,6 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 	#source, #server
 	{
 		border: none;
-		/*padding: 24px 0;*/
-		/*border-top: 1px solid black;*/
 	}
 
 	#source h2, #server h2
@@ -132,12 +125,6 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 		font-size: 12px;
 	}
 
-	#template, #source, #server, body, html
-	{
-		/*margin: 0;*/
-		/*padding: 0;*/
-	}
-
 	#data { margin-bottom: 12px;}
 	html {padding: 12px;}
 	body { margin: 0; padding: 0; margin-bottom: 48px;}
@@ -147,11 +134,11 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 	pre[class*="language-"]
 	{
 		padding: 12px;
-		/*background-color: white;*/
 	}
-		pre[class*="language-"] code {
-			font-size: 9px;
-			line-height: 12px;
-		}
+
+	pre[class*="language-"] code {
+		font-size: 9px;
+		line-height: 12px;
+	}
 
 }
