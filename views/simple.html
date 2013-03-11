@@ -12,7 +12,7 @@
 
     <!-- Syntax highlighting for the code -->
     <link rel='stylesheet' type='text/css' href='css/prism.css'>
-    <script src='js/tally-highlights.js'></script>
+    <script data-tally-dummy src='js/tally-highlights.js'></script>
 
     <link rel='stylesheet' type='text/css' href='css/simple.css'>
 
@@ -101,55 +101,49 @@
 
 &lt;!-- Conditional --&gt;
 &lt;ul data-tally-if=&#039;friends&#039;&gt;
+  &lt;!-- Repeater --&gt;
+  &lt;li data-tally-repeat=&#039;friend friends&#039;&gt;
+    &lt;p&gt;&lt;span data-tally-text=&#039;friend.name&#039;&gt;Name&lt;/span&gt; knows &lt;span data-tally-text=&#039;friend.skills&#039;&gt;skills&lt;/span&gt;.&lt;/p&gt;
+&lt;/li&gt;
 
-    &lt;!-- Repeater --&gt;
-    &lt;li data-tally-repeat=&#039;friend friends&#039;&gt;
-        &lt;p&gt;&lt;span data-tally-text=&#039;friend.name&#039;&gt;Name&lt;/span&gt; knows &lt;span data-tally-text=&#039;friend.skills&#039;&gt;skills&lt;/span&gt;.&lt;/p&gt;
-    &lt;/li&gt;
-
-    &lt;!-- Dummy data --&gt;
-    &lt;li data-tally-dummy&gt;
-        &lt;p&gt;Some sample content.&lt;/p&gt;
-    &lt;/li&gt;
-
-    &lt;li data-tally-dummy&gt;
-        &lt;p&gt;That could help when styling the page.&lt;/p&gt;
-    &lt;/li&gt;
+  &lt;!-- Dummy data --&gt;
+  &lt;li data-tally-dummy&gt;
+    &lt;p&gt;Some sample content.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li data-tally-dummy&gt;
+    &lt;p&gt;That could help when styling the page.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!-- Conditional --&gt;
 &lt;p data-tally-if=&#039;not:friends&#039;&gt;No friends found.&lt;/p&gt;</code></pre>
     </section>
 
-    <section id='data'>
+    <section id='server'>
         <h2>Data</h2>
-        <pre><code class='language-coffeescript'>data =
-    title: 'Tally sample'
-    name: 'Tally'
-    content: 'This is a simple example to demonstrate Tally, a templating engine for Express 3 and client‐side JavaScript built on Distal, a JavaScript implementation of TAL from the Zope framework.'
-    newURL: 'http://aralbalkan.com'
-    correctURLFragment: 'moderniosdevelopment'
-    aralImageURL: 'http://aralbalkan.com/images/aral.jpg'
-    friends:
-        [
-            {name: 'Laura', skills: 'design, development, illustration, speaking'},
-            {name: 'Seb', skills: 'particles, games, JavaScript, C++'},
-            {name: 'Natalie', skills: 'HTML, CSS'}
-        ]
-    templateClass: 'tab'
-    renderedClass: 'tab selected'</code></pre>
+        <pre id='data'><code class='language-coffeescript'>data =
+  title: 'Tally sample'
+  name: 'Tally'
+  content: 'This is a simple example to demonstrate Tally, a templating engine for Express 3 and client‐side JavaScript built on Distal, a JavaScript implementation of TAL from the Zope framework.'
+  newURL: 'http://aralbalkan.com'
+  correctURLFragment: 'moderniosdevelopment'
+  aralImageURL: 'http://aralbalkan.com/images/aral.jpg'
+  friends:
+  [
+    {name: 'Laura', skills: 'design, development, illustration, speaking'},
+    {name: 'Seb', skills: 'particles, games, JavaScript, C++'},
+    {name: 'Natalie', skills: 'HTML, CSS'}
+  ]</code></pre>
 
         <h2>Express 3 router (node.js)</h2>
         <pre><code class='language-coffeescript'>exports.route = (request, response) -&gt;
-
-    # Custom formatter
-    data.__tally = {
-        formatters:
-            fullURL: (value) -&gt;
-                return 'http://' + value + '.com'
-    }
-
-    response.render 'simple', data
+# Custom formatter
+data.__tally = {
+  formatters:
+    fullURL: (value) -&gt;
+      return 'http://' + value + '.com'
+}
+response.render 'simple', data
 </code></pre>
     </section>
 
