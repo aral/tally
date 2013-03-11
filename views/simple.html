@@ -8,64 +8,124 @@
     <link rel='stylesheet' type='text/css' href='css/base.css'>
     <style type='text/css'> img { max-width:300px; margin: 0 auto; } </style>
 
-    <link data-tally-if='false' rel='stylesheet' type='text/css' href='css/tally-highlights.css'>
-    <script data-tally-if='false' src='js/tally-highlights.js'></script>
-    <style type="text/css">
-        div[role='main']
-        {
-            margin: 0 auto;
-            max-width: 480px;
-        }
-    </style>
+    <link data-tally-dummy rel='stylesheet' type='text/css' href='css/tally-highlights.css'>
+
+    <!-- Syntax highlighting for the code -->
+    <link rel='stylesheet' type='text/css' href='css/prism.css'>
+    <script src='js/tally-highlights.js'></script>
+
+    <link rel='stylesheet' type='text/css' href='css/simple.css'>
+
 </head>
 <body>
 
     <nav>
-    <h1><a href='/'>Home</a></h1>
+        <h1><a href='/'>Home</a></h1>
     </nav>
 
     <ul class='tabs'>
-        <a href=''><li class='tab'>Source</li></a>
         <a href='/simple'><li data-tally-attribute='class renderedClass' class='tab'>Rendered</li></a>
         <a data-tally-dummy href='/simple.html'><li class='tab selected'>Template</li></a>
         <a href='/simple.html'><li data-tally-attribute='class templateClass' class='invisible'>Template</li></a>
     </ul>
 
-    <div role='main'>
-        <h1 data-tally-text='title'>A placeholder title</h1>
+    <section id='template'>
+        <div>
+            <!-- Template source -->
 
-        <p>Hello from <span data-tally-text='name'>name of the templating engine</span>!<p>
+            <h1 data-tally-text='title'>A placeholder title</h1>
 
-        <p data-tally-text='content'>This paragraph is a placeholder.</p>
+            <p>Hello from <span data-tally-text='name'>name of the templating engine</span>!<p>
 
-        <p><a data-tally-attribute='href newURL' href='/'>This should link to Aral’s homepage.</a></p>
+            <!-- Text substitution -->
+            <p data-tally-text='content'>This paragraph is a placeholder.</p>
 
-        <p><a data-tally-attribute='href correctURLFragment fullURL' href='http://aralbalkan.com'>This should link to the Modern iOS Development workshop.</a></p>
+            <!-- Attribute substitution -->
+            <p><a data-tally-attribute='href newURL' href='/'>This should link to Aral’s homepage.</a></p>
 
-        <p>This should be Aral’s headshot:</p>
+            <!-- Custom Formatter -->
+            <p><a data-tally-attribute='href correctURLFragment fullURL' href='http://aralbalkan.com'>This should link to the Modern iOS Development workshop.</a></p>
 
-        <img data-tally-attribute='src aralImageURL' src='http://placehold.it/600x600'>
+            <p>This should be Aral’s headshot:</p>
 
-        <h2>Friends and their skills</h2>
+            <!-- Placeholder image -->
+            <img data-tally-attribute='src aralImageURL' src='http://placehold.it/600x600'>
 
-        <ul>
-            <li data-tally-repeat='friend friends'>
-                <p><span data-tally-text='friend.name'>Name</span> knows <span data-tally-text='friend.skills'>skills</span>.</p>
-            </li>
-            <li data-tally-if='false'>
-                <p>Some sample content.</p>
-            </li>
-            <li data-tally-if='false'>
-                <p>That could help when styling the page.</p>
-            </li>
-        </ul>
+            <h2>Friends and their skills</h2>
 
-        <p data-tally-if='not:friends'>No friends found.</p>
-    </div>
+            <!-- Conditional -->
+            <ul data-tally-if='friends'>
+
+                <!-- Repeater -->
+                <li data-tally-repeat='friend friends'>
+                    <p><span data-tally-text='friend.name'>Name</span> knows <span data-tally-text='friend.skills'>skills</span>.</p>
+                </li>
+
+                <!-- Dummy data -->
+                <li data-tally-dummy>
+                    <p>Some sample content.</p>
+                </li>
+
+                <li data-tally-dummy>
+                    <p>That could help when styling the page.</p>
+                </li>
+            </ul>
+
+            <!-- Conditional -->
+            <p data-tally-if='not:friends'>No friends found.</p>
+
+        </div>
+    </section>
+
+    <section id='source'>
+        <h2>HTML</h2>
+        <pre><code class='language-markup'>&lt;h1 data-tally-text=&#039;title&#039;&gt;A placeholder title&lt;/h1&gt;
+
+&lt;p&gt;Hello from &lt;span data-tally-text=&#039;name&#039;&gt;name of the templating engine&lt;/span&gt;!&lt;p&gt;
+
+&lt;!-- Text substitution --&gt;
+&lt;p data-tally-text=&#039;content&#039;&gt;This paragraph is a placeholder.&lt;/p&gt;
+
+&lt;!-- Attribute substitution --&gt;
+&lt;p&gt;&lt;a data-tally-attribute=&#039;href newURL&#039; href=&#039;/&#039;&gt;This should link to Aral&rsquo;s homepage.&lt;/a&gt;&lt;/p&gt;
+
+&lt;!-- Custom Formatter --&gt;
+&lt;p&gt;&lt;a data-tally-attribute=&#039;href correctURLFragment fullURL&#039; href=&#039;http://aralbalkan.com&#039;&gt;This should link to the Modern iOS Development workshop.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This should be Aral&rsquo;s headshot:&lt;/p&gt;
+
+&lt;!-- Placeholder image --&gt;
+&lt;img data-tally-attribute=&#039;src aralImageURL&#039; src=&#039;http://placehold.it/600x600&#039;&gt;
+
+&lt;h2&gt;Friends and their skills&lt;/h2&gt;
+
+&lt;!-- Conditional --&gt;
+&lt;ul data-tally-if=&#039;friends&#039;&gt;
+
+    &lt;!-- Repeater --&gt;
+    &lt;li data-tally-repeat=&#039;friend friends&#039;&gt;
+        &lt;p&gt;&lt;span data-tally-text=&#039;friend.name&#039;&gt;Name&lt;/span&gt; knows &lt;span data-tally-text=&#039;friend.skills&#039;&gt;skills&lt;/span&gt;.&lt;/p&gt;
+    &lt;/li&gt;
+
+    &lt;!-- Dummy data --&gt;
+    &lt;li data-tally-dummy&gt;
+        &lt;p&gt;Some sample content.&lt;/p&gt;
+    &lt;/li&gt;
+
+    &lt;li data-tally-dummy&gt;
+        &lt;p&gt;That could help when styling the page.&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Conditional --&gt;
+&lt;p data-tally-if=&#039;not:friends&#039;&gt;No friends found.&lt;/p&gt;</code></pre>
+    </section>
 
     <div data-tally-dummy id='tallyControls'>
         <button id='highlightTemplate'>Show highlights</button>
     </div>
+
+    <script src='js/prism.js'></script>
 
 </body>
 </html>

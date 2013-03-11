@@ -1,0 +1,82 @@
+#template, #source
+{
+	margin: 0 48px;
+}
+
+#template
+{
+    /*margin: 0 auto;*/
+    width:40%;
+    float:left;
+    border: 1px solid black;
+    min-width: 300px;
+    display: block;
+}
+
+#template > div
+{
+	width:300px;
+	min-width:280px;
+	max-width:100%;
+	margin: 48px auto;
+}
+
+#source
+{
+	/*width: 40%;*/
+	/*float:right;*/
+	/*width: 480px;*/
+	min-width:300px;
+}
+
+#source h2
+{
+	display:none;
+	margin-bottom: 12px;
+}
+
+pre[class*="language-"]
+{
+	padding: 48px 48px;
+
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, post millennium */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+@media all and (max-width:960px)
+{
+	#template
+	{
+		float: none;
+		width: inherit;
+		border: none;
+	}
+
+	#source
+	{
+		padding-top: 24px;
+		border-top: 1px solid black;
+	}
+
+	#source h2
+	{
+		display:block;
+	}
+}
+
+@media all and (max-width: 400px)
+{
+	#template, #source, body, html
+	{
+		margin: 0;
+		padding: 0;
+	}
+
+	pre[class*="language-"]
+	{
+		padding: 12px;
+		background-color: white;
+	}

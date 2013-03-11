@@ -7,6 +7,7 @@ body
 {
 	/*max-width:480px;*/
 	margin:60px auto;
+	margin-top:12px;
 	line-height: 24px;
 	font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif
 }
@@ -94,18 +95,18 @@ footer
 	border-right: 1px solid gray;
 	margin-right: 6px;
 	margin-bottom:  0;
-	padding: 0px 12px;
+	padding: 0 12px;
 	-webkit-border-radius: 6px 6px 0 0;
 	border-radius: 6px 6px 0 0;
 	background-color: #eee;
-	float:right;
+	float:left;
 	/*margin-top: -32px;*/
 }
 
 li.selected
 {
 	background-color: #ccc;
-	color: white;
+	color: #252525;
 }
 
 .invisible
@@ -122,13 +123,14 @@ li.selected
   }
   .tabs li
   {
-  	padding: 3px 6px;
+  	padding: 0 6px;
   	margin-right: 2px;
   	/*margin-4ttom: -1px;*/
   }
   li.selected
   {
   	/*padding-bottom: 5px;*/
+
   }
 
 }
