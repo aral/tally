@@ -1,3 +1,8 @@
+html
+{
+	min-width: 350px;
+}
+
 #template, #source
 {
 	margin: 0 48px;
@@ -19,7 +24,7 @@
 	width:300px;
 	min-width:280px;
 	max-width:100%;
-	margin: 48px auto;
+	margin: 36px auto;
 }
 
 #source
@@ -36,9 +41,6 @@
 
 #source h2, #server h2
 {
-	/*display:none;*/
-	/*margin-bottom: 12px;*/
-
 	display:block;
 	margin-top: 0;
 	margin-bottom: -6px;
@@ -62,6 +64,12 @@
 	margin-bottom: 24px;
 }
 
+img
+{
+	width: 300px;
+	margin: 0 auto;
+}
+
 section
 {
 	margin-bottom: 48px;
@@ -70,7 +78,7 @@ section
 pre[class*="language-"]
 {
 	padding: 12px 24px;
-	font-size: 12px !important;
+	font-size: 12px;
 
     white-space: pre-wrap; /* CSS3 */
     white-space: -moz-pre-wrap; /* Mozilla, post millennium */
@@ -91,12 +99,16 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 		float: none;
 		width: inherit;
 		margin: inherit;
-		border: none;
+		margin-bottom: 24px;
+		margin-top: 24px;
 	}
+
+	#template { margin-bottom: 0; margin-top: 0;}
 
 	#source, #server
 	{
-		padding: 24px 0;
+		border: none;
+		/*padding: 24px 0;*/
 		/*border-top: 1px solid black;*/
 	}
 
@@ -108,17 +120,38 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 
 @media all and (max-width: 400px)
 {
+	tabs
+	{
+		margin-bottom: 0;
+	}
+
+	#template, #source, #server
+	{
+		margin-bottom: 12px;
+		margin-top: 12px;
+		font-size: 12px;
+	}
+
 	#template, #source, #server, body, html
 	{
-		margin: 0;
+		/*margin: 0;*/
 		/*padding: 0;*/
 	}
 
-	body { margin-bottom: 48px;}
+	#data { margin-bottom: 12px;}
+	html {padding: 12px;}
+	body { margin: 0; padding: 0; margin-bottom: 48px;}
+
+	#source h2, #server h2 { padding-left: 12px;}
 
 	pre[class*="language-"]
 	{
 		padding: 12px;
-		background-color: white;
+		/*background-color: white;*/
 	}
+		pre[class*="language-"] code {
+			font-size: 9px;
+			line-height: 12px;
+		}
+
 }

@@ -81,9 +81,9 @@ footer
 	/*padding-bottom: 5px;*/
 	border-bottom: 1px solid gray;
 	text-align:right;
-	padding-top: 48px;
+	padding-top: 24px;
 	padding-bottom: 0;
-	margin-bottom: 48px;
+	/*margin-bottom: 48px;*/
 	overflow: hidden;
 	display:block;
 }
