@@ -43,7 +43,7 @@
 	margin-top: 0;
 	margin-bottom: -6px;
 	padding-left: 24px;
-	color: #252525;
+	color: #4C3D33;
 	background-color: #E0D7D1;
 	z-index: 9999;
 	font-size: 16px;
@@ -90,13 +90,14 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 	{
 		float: none;
 		width: inherit;
+		margin: inherit;
 		border: none;
 	}
 
 	#source, #server
 	{
 		padding: 24px 0;
-		border-top: 1px solid black;
+		/*border-top: 1px solid black;*/
 	}
 
 	#source h2, #server h2
@@ -107,14 +108,17 @@ code[class*='coffeescript'] span[class~='token'][class~='string']
 
 @media all and (max-width: 400px)
 {
-	#template, #source, body, html
+	#template, #source, #server, body, html
 	{
 		margin: 0;
-		padding: 0;
+		/*padding: 0;*/
 	}
+
+	body { margin-bottom: 48px;}
 
 	pre[class*="language-"]
 	{
 		padding: 12px;
 		background-color: white;
 	}
+}

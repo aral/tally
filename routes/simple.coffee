@@ -13,7 +13,7 @@
 data =
     title: 'Tally sample'
     name: 'Tally'
-    content: 'This is a simple example to demonstrate Tally, a templating engine for Express 3 and client‐side JavaScript built on Distal, a JavaScript implementation of TAL from the Zope framework.'
+    content: 'This is a simple example to demonstrate Tally, a templating engine for Express (node.js) and client‐side JavaScript.'
     newURL: 'http://aralbalkan.com'
     correctURLFragment: 'moderniosdevelopment'
     aralImageURL: 'http://aralbalkan.com/images/aral.jpg'
