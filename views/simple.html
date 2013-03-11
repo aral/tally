@@ -121,6 +121,38 @@
 &lt;p data-tally-if=&#039;not:friends&#039;&gt;No friends found.&lt;/p&gt;</code></pre>
     </section>
 
+    <section id='data'>
+        <h2>Data</h2>
+        <pre><code class='language-coffeescript'>data =
+    title: 'Tally sample'
+    name: 'Tally'
+    content: 'This is a simple example to demonstrate Tally, a templating engine for Express 3 and client‐side JavaScript built on Distal, a JavaScript implementation of TAL from the Zope framework.'
+    newURL: 'http://aralbalkan.com'
+    correctURLFragment: 'moderniosdevelopment'
+    aralImageURL: 'http://aralbalkan.com/images/aral.jpg'
+    friends:
+        [
+            {name: 'Laura', skills: 'design, development, illustration, speaking'},
+            {name: 'Seb', skills: 'particles, games, JavaScript, C++'},
+            {name: 'Natalie', skills: 'HTML, CSS'}
+        ]
+    templateClass: 'tab'
+    renderedClass: 'tab selected'</code></pre>
+
+        <h2>Express 3 router (node.js)</h2>
+        <pre><code class='language-coffeescript'>exports.route = (request, response) -&gt;
+
+    # Custom formatter
+    data.__tally = {
+        formatters:
+            fullURL: (value) -&gt;
+                return 'http://' + value + '.com'
+    }
+
+    response.render 'simple', data
+</code></pre>
+    </section>
+
     <div data-tally-dummy id='tallyControls'>
         <button id='highlightTemplate'>Show highlights</button>
     </div>

@@ -6,11 +6,12 @@
 #template
 {
     /*margin: 0 auto;*/
-    width:40%;
+    width:20%;
     float:left;
     border: 1px solid black;
-    min-width: 300px;
-    display: block;
+    min-width: 348px;
+    margin-right:24px;
+    /*display: block;*/
 }
 
 #template > div
@@ -27,17 +28,29 @@
 	/*float:right;*/
 	/*width: 480px;*/
 	min-width:300px;
+	float: left;
+	width: 30%;
+	margin: 0 24px;
+	margin-left:0;
 }
 
-#source h2
+#source h2, #data h2
 {
 	display:none;
 	margin-bottom: 12px;
 }
 
+#data
+{
+	min-width:300px;
+	float: left;
+	width: 30%;
+}
+
 pre[class*="language-"]
 {
-	padding: 48px 48px;
+	padding: 48px 24px;
+	font-size: 12px !important;
 
     white-space: pre-wrap; /* CSS3 */
     white-space: -moz-pre-wrap; /* Mozilla, post millennium */
@@ -46,22 +59,22 @@ pre[class*="language-"]
     word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
-@media all and (max-width:960px)
+@media all and (max-width:1160px)
 {
-	#template
+	#template, #source, #data
 	{
 		float: none;
 		width: inherit;
 		border: none;
 	}
 
-	#source
+	#source, #data
 	{
-		padding-top: 24px;
+		padding: 24px 0;
 		border-top: 1px solid black;
 	}
 
-	#source h2
+	#source h2, #data h2
 	{
 		display:block;
 	}

@@ -34,7 +34,6 @@ exports.route = (request, response) ->
             fullURL: (value) ->
                 return 'http://' + value + '.com'
             isSelected: (value) ->
-                console.log('returning xxx')
                 return 'tab selected'
     }
 

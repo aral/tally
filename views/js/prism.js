@@ -449,3 +449,181 @@ if (Prism.languages.markup) {
 		}
 	});
 };
+Prism.languages.coffeescript = Prism.languages.extend('javascript', {
+  'block-comment': /([#]{3}\s*\r?\n(.*\s*\r*\n*)\s*?\r?\n[#]{3})/g,
+  'comment': /(\s|^)([#]{1}[^#^\r^\n]{2,}?(\r?\n|$))/g,
+  'keyword': /\b(this|window|delete|class|extends|namespace|extend|ar|let|if|else|while|do|for|each|of|return|in|instanceof|new|with|typeof|try|catch|finally|null|undefined|break|continue)\b/g,
+});
+
+Prism.languages.insertBefore('coffeescript', 'keyword', {
+  'function': {
+    pattern: /[a-z|A-z]+\s*[:|=]\s*(\([.|a-z\s|,|:|{|}|\"|\'|=]*\))?\s*-&gt;/gi,
+    inside: {
+      'function-name': /[_?a-z-|A-Z-]+(\s*[:|=])| @[_?$?a-z-|A-Z-]+(\s*)| /g,
+      'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g
+    }
+  },
+
+  'class-name': {
+    pattern: /(class\s+)[a-z-]+[\.a-z]*\s/gi,
+    lookbehind: true
+  },
+
+  'attr-name': /[_?a-z-|A-Z-]+(\s*:)| @[_?$?a-z-|A-Z-]+(\s*)| /g
+});
+;
+(function(){
+
+if(!window.Prism) {
+	return;
+}
+
+function $$(expr, con) {
+	return Array.prototype.slice.call((con || document).querySelectorAll(expr));
+}
+
+var CRLF = crlf = /\r?\n|\r/g;
+    
+function highlightLines(pre, lines, classes) {
+	var ranges = lines.replace(/\s+/g, '').split(','),
+	    offset = +pre.getAttribute('data-line-offset') || 0;
+	
+	var lineHeight = parseFloat(getComputedStyle(pre).lineHeight);
+
+	for (var i=0, range; range = ranges[i++];) {
+		range = range.split('-');
+					
+		var start = +range[0],
+		    end = +range[1] || start;
+		
+		var line = document.createElement('div');
+		
+		line.textContent = Array(end - start + 2).join(' \r\n');
+		line.className = (classes || '') + ' line-highlight';
+		line.setAttribute('data-start', start);
+		
+		if(end > start) {
+			line.setAttribute('data-end', end);
+		}
+	
+		line.style.top = (start - offset - 1) * lineHeight + 'px';
+		
+		(pre.querySelector('code') || pre).appendChild(line);
+	}
+}
+
+function applyHash() {
+	var hash = location.hash.slice(1);
+	
+	// Remove pre-existing temporary lines
+	$$('.temporary.line-highlight').forEach(function (line) {
+		line.parentNode.removeChild(line);
+	});
+	
+	var range = (hash.match(/\.([\d,-]+)$/) || [,''])[1];
+	
+	if (!range || document.getElementById(hash)) {
+		return;
+	}
+	
+	var id = hash.slice(0, hash.lastIndexOf('.')),
+	    pre = document.getElementById(id);
+	    
+	if (!pre) {
+		return;
+	}
+	
+	if (!pre.hasAttribute('data-line')) {
+		pre.setAttribute('data-line', '');
+	}
+
+	highlightLines(pre, range, 'temporary ');
+
+	document.querySelector('.temporary.line-highlight').scrollIntoView();
+}
+
+var fakeTimer = 0; // Hack to limit the number of times applyHash() runs
+
+Prism.hooks.add('after-highlight', function(env) {
+	var pre = env.element.parentNode;
+	var lines = pre && pre.getAttribute('data-line');
+	
+	if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
+		return;
+	}
+	
+	clearTimeout(fakeTimer);
+	
+	$$('.line-highlight', pre).forEach(function (line) {
+		line.parentNode.removeChild(line);
+	});
+	
+	highlightLines(pre, lines);
+	
+	fakeTimer = setTimeout(applyHash, 1);
+});
+
+addEventListener('hashchange', applyHash);
+
+})();;
+(function(){
+
+if (!self.Prism) {
+	return;
+}
+
+var url = /\b([a-z]{3,7}:\/\/|tel:)[\w-+%~/.]+/,
+    email = /\b\S+@[\w.]+[a-z]{2}/,
+    linkMd = /\[([^\]]+)]\(([^)]+)\)/,
+    
+	// Tokens that may contain URLs and emails
+    candidates = ['comment', 'url', 'attr-value', 'string'];
+
+for (var language in Prism.languages) {
+	var tokens = Prism.languages[language];
+	
+	Prism.languages.DFS(tokens, function (type, def) {
+		if (candidates.indexOf(type) > -1) {
+			if (!def.pattern) {
+				def = this[type] = {
+					pattern: def
+				};
+			}
+			
+			def.inside = def.inside || {};
+			
+			if (type == 'comment') {
+				def.inside['md-link'] = linkMd;
+			}
+			
+			def.inside['url-link'] = url;
+			def.inside['email-link'] = email;
+		}
+	});
+	
+	tokens['url-link'] = url;
+	tokens['email-link'] = email;
+}
+
+Prism.hooks.add('wrap', function(env) {
+	if (/-link$/.test(env.type)) {
+		env.tag = 'a';
+		
+		var href = env.content;
+		
+		if (env.type == 'email-link') {
+			href = 'mailto:' + href;
+		}
+		else if (env.type == 'md-link') {
+			// Markdown
+			var match = env.content.match(linkMd);
+			
+			href = match[2];
+			env.content = match[1];
+		}
+		
+		env.attributes.href = href;
+	}
+});
+
+})();;
