@@ -119,6 +119,18 @@ p:last-child
 	color: #E33838;
 }
 
+#progress-indicator
+{
+	position: relative;
+	vertical-align: middle;
+	margin-left: 12px;
+}
+
+.hide
+{
+	display:none;
+}
+
 @media all and (max-width:524px)
 {
 	html {
