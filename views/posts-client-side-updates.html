@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<title>App.net Global Timeline</title>
+	<meta name='viewport' content='width=device-width'>
+	<link rel='stylesheet' type='text/css' href='css/posts.css'>
+
+    <link data-tally-if='false' rel='stylesheet' type='text/css' href='css/tally-highlights.css'>
+    <script data-tally-if='false' src='js/tally-highlights.js'></script>
+
+    <script type='text/javascript' src='js/autolink-adn-mentions-and-hashtags.js'></script>
+
+    <script type='text/javascript' src='js/superagent.js'></script>
+
+    <!-- Tally engine -->
+  	<script src="/tally.js"></script>
+
+  	<script type='text/javascript'>
+
+  		window.addEventListener('load', function(){
+
+  			document.getElementById('refresh-timeline').addEventListener('click', function(){
+
+				superagent.get('https://alpha-api.app.net/stream/0/posts/stream/global').end(function(error, globalTimelineResponse) {
+				      var globalTimeline;
+				      globalTimelineResponse.body.numberOfPosts = function() {
+				        return this.data.length;
+				      };
+				      globalTimeline = globalTimelineResponse.body;
+				      if (error) {
+				        globalTimeline.errorType = 'Network';
+				        globalTimeline.error = error;
+				      } else if (!globalTimeline.data) {
+				        globalTimeline.data = [];
+				        globalTimeline.errorType = 'App.net';
+				        globalTimeline.error = "(#" + globalTimeline.meta.code + ") " + globalTimeline.meta.error_message;
+				      }
+				      tally(document.body, globalTimelineResponse.body);
+				    });
+  			});
+  		});
+
+  	</script>
+</head>
+<body>
+	<h1>App.net Global Timeline</h1>
+	<p>The latest <span data-tally-text='numberOfPosts'>NN</span> posts from <a href='http://join.app.net'>App.net</a>.</p><button id='refresh-timeline'>Refresh timeline</button>
+	<ul>
+		<li data-tally-if='not:error' data-tally-repeat='post data'>
+			<img data-tally-attribute='src post.user.avatar_image.url; alt post.user.name' src='http://placehold.it/100x100' alt=''>
+
+			<p><a class='user' data-tally-attribute='href post.user.canonical_url' data-tally-text='post.user.name' href=''>User’s Name</a>
+
+			<span class='postText' data-tally-text='html post.html'>This is a prototypical list item. It will be repeated by the Tally engine to create the list of posts. The other posts are all samples&#8202;—&#8202;containing real data&#8202;—&#8202;to help you style the page without requiring access to the server.</span></p>
+
+		</li>
+
+		<li data-tally-dummy>
+
+			<img src="https://d2rfichhc2fb9n.cloudfront.net/image/5/OKiE6bmnN2m0P1JpVUzYnggEaEJ7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvODQvMGUvMTAvODQwZTEwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0" alt="Matthew Sanderson">
+
+			<p><a class="user" href="https://alpha.app.net/mksanderson">Matthew Sanderson</a>
+
+			<span class="postText"><span itemscope="https://app.net/schemas/Post">Just listened to the new Jimi Hendrix album on <span itemprop="mention" data-mention-id="47694" data-mention-name="rdio"><a href="http://alpha.app.net/rdio" alt="rdio on App.net.">@rdio</a></span> and now it’s times for the new David Bowie album. <span itemprop="hashtag" data-hashtag-name="thisis2013right">#thisis2013right</span> <span itemprop="hashtag" data-hashtag-name="notcomplaining">#notcomplaining</span></span></span></p>
+
+		</li>
+
+		<li data-tally-dummy>
+
+			<img src="https://d2rfichhc2fb9n.cloudfront.net/image/5/uKEHCz3tSIVIcl2HJkmrwlsfmQ97InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvODgvOTQvMjAvODg5NDIwMDAwMDAwMDAwMC5wbmciLCJvIjoiIn0" alt="ChanChan">
+
+			<p><a class="user" href="https://alpha.app.net/chanchan">ChanChan</a>
+
+			<span class="postText" ><span itemscope="https://app.net/schemas/Post"><span itemprop="mention" data-mention-id="32315" data-mention-name="paradiseasin"><a href="http://alpha.app.net/paradiseasin" alt="paradiseasin on App.net.">@paradiseasin</a></span> <span itemprop="mention" data-mention-id="32316" data-mention-name="fredrica_fanfan"><a href="http://alpha.app.net/fredrica_fanfan" alt="fredrica_fanfan on App.net.">@fredrica_fanfan</a></span> 豆奶+雞肉，早晚能豐胸。</span></span></p>
+
+		</li>
+
+		<li data-tally-dummy>
+			<img src="https://d2rfichhc2fb9n.cloudfront.net/image/5/h8z_zTR_SrZgtcbu42DSxPrFwqh7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvYWMvNDIvMjAvYWM0MjIwMDAwMDAwMDAwMC5wbmciLCJvIjoiIn0" alt="June Taylor">
+
+			<p><a class="user" href="https://alpha.app.net/jxune">June Taylor</a>
+
+			<span class="postText" ><span itemscope="https://app.net/schemas/Post">I would be a terrible window washer, I can’t even keep my glasses clean. </span></span></p>
+
+		</li>
+
+		<li data-tally-dummy>
+
+			<img src="https://d2rfichhc2fb9n.cloudfront.net/image/5/7KKfqSMv6ZagiHeLnbVWoC1AcL57InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvM2IvZmEvMDAvM2JmYTAwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0" alt="Seth Clifford">
+
+			<p><a class="user" href="https://alpha.app.net/sethclifford">Seth Clifford</a>
+
+			<span class="postText"><span itemscope="https://app.net/schemas/Post">- Open Amazon app<br>- Find iPhone case I feel like trying<br>- Tap 1-day shipping<br>- Find out I was a minute too late on the order and it won’t arrive until Monday<br>- Re-open app, cancel order<br><br>This company has empowered and ruined me in equal parts. </span></span></p>
+
+		</li>
+
+		<!-- Display an error message for network & App.net errors -->
+		<li data-tally-if='error'><span data-tally-text='errorType'>(Error type)</span> error: <span data-tally-text='error'>the network or App.net error message</span>.</li>
+	</ul>
+
+	<div data-tally-dummy id='tallyControls'>
+		<button id='highlightTemplate'>Show highlights</button>
+	</div>
+</body>
+</html>

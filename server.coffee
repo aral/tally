@@ -37,6 +37,9 @@ createRoute '/simple'
 # App.net global timeline example.
 createRoute '/posts'
 
+# App.net global timeline example.
+createRoute '/posts-client-side-updates'
+
 # App.net global timeline example with profiling.
 createRoute '/profile'
 
