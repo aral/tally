@@ -131,6 +131,16 @@ p:last-child
 	display:none;
 }
 
+button
+{
+    display: block;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    margin: 12px auto;
+}
+
+
 @media all and (max-width:524px)
 {
 	html {
