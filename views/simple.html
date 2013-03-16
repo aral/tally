@@ -23,9 +23,21 @@
 
     <ul class='tabs'>
         <a href='/simple'><li data-tally-attribute='class renderedClass' class='tab'>Rendered</li></a>
-        <a data-tally-dummy href='/simple.html'><li class='tab selected'>Template</li></a>
-        <a href='/simple.html'><li data-tally-attribute='class templateClass' class='invisible'>Template</li></a>
+        <a data-tally-dummy href='/simple.html'><li class='tab selected'>Tally</li></a>
+        <a href='/simple.html'><li data-tally-attribute='class templateClass' class='invisible'>Tally</li></a>
+        <a href='/handlebars.html'><li class='tab'>Handlebars</li></a>
+        <a href='/plates.html'><li class='tab'>Plates</li></a>
     </ul>
+
+    <section data-tally-attribute='class name' class='invisible' id='rendered-summary'>
+    <h1>Rendered template</h1>
+    <p>This is the template as rendered by Tally, along with the Tally source, showing the HTML, the data object, and the Express 3 router in node.js. All the other examples render to exactly the same output.</p>
+    </section>
+
+    <section data-tally-dummy id='tally-template-summary'>
+        <h1>Tally template</h1>
+        <p>This is the template in Tally. Unlike the Handlebars example, the template looks almost identical to the final render and can be used to design in the browser. You can even add dummy data (like the second and third list items) which are not included in the final render. Unlike the Plates example, no mapping code is necessary. Data is mapped automatically to the HTML elements.</p>
+    </section>
 
     <section id='template'>
         <div>

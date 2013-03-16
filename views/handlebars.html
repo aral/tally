@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width'>
+    <title data-tally-text='title'></title>
+
+    <link rel='stylesheet' type='text/css' href='css/base.css'>
+    <link data-tally-dummy rel='stylesheet' type='text/css' href='css/tally-highlights.css'>
+
+    <!-- Syntax highlighting for the code -->
+    <link rel='stylesheet' type='text/css' href='css/prism.css'>
+    <script data-tally-dummy src='js/tally-highlights.js'></script>
+
+    <link rel='stylesheet' type='text/css' href='css/simple.css'>
+
+</head>
+<body>
+
+    <nav>
+        <h1><a href='/'>Home</a></h1>
+    </nav>
+
+    <ul class='tabs'>
+        <a href='/simple'><li data-tally-attribute='tab' class='tab'>Rendered</li></a>
+        <a href='/simple.html'><li data-tally-attribute='tab'>Tally</li></a>
+        <a href='/handlebars.html'><li class='tab selected'>Handlebars</li></a>
+        <a href='/plates.html'><li class='tab'>Plates</li></a>
+    </ul>
+
+    <section id='summary'>
+    <h1>Handlebars example</h1>
+    <p>This is the same template but for Handlebars. The template is not pure HTML and is not suitable to design in the browser with.</p>
+    </section>
+
+    <section id='template'>
+        <div>
+            <!-- Template source -->
+
+          <h1>{{title}}</h1>
+          <p>Hello from {{name}}!<p>
+
+          <p>{{content}}</p>
+
+          <p><a href='{{newURL}}'>This should link to Aral’s homepage.</a></p>
+
+          <p><a href='http://{{correctURLFragment}}.com'>This should link to the Modern iOS Development workshop.</a></p>
+
+          <p>This should be Aral’s headshot:</p>
+
+          <img src='{{aralImageURL}}'>
+
+          <h2>Friends and their skills</h2>
+
+          {{#if friends}}
+          <ul class='friends-list'>
+              {{#each friends}}
+              <li>
+                  <p>{{name}} knows {{skills}}.</p>
+              </li>
+              {{/each}}
+          </ul>
+          {{else}}
+          <p class='no-friends-warning'>No friends found.</p>
+          {{/if}}
+
+        </div>
+    </section>
+
+    <section id='source'>
+        <h2>HTML</h2>
+        <pre><code class='language-markup'>&lt;h1&gt;{{title}}&lt;/h1&gt;
+&lt;p&gt;Hello from {{name}}!&lt;p&gt;
+
+&lt;p&gt;{{content}}&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#039;{{newURL}}&#039;&gt;This should link to Aral&amp;rsquo;s homepage.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#039;http://{{correctURLFragment}}.com&#039;&gt;This should link to the Modern iOS Development workshop.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This should be Aral&amp;rsquo;s headshot:&lt;/p&gt;
+
+&lt;img src=&#039;{{aralImageURL}}&#039;&gt;
+
+&lt;h2&gt;Friends and their skills&lt;/h2&gt;
+
+{{#if friends}}
+&lt;ul class=&#039;friends-list&#039;&gt;
+  {{#each friends}}
+  &lt;li&gt;
+    &lt;p&gt;{{name}} knows {{skills}}.&lt;/p&gt;
+  &lt;/li&gt;
+  {{/each}}
+&lt;/ul&gt;
+{{else}}
+&lt;p class=&#039;no-friends-warning&#039;&gt;No friends found.&lt;/p&gt;
+{{/if}}</code></pre>
+    </section>
+
+    <section id='server'>
+        <h2>Data</h2>
+        <pre id='data'><code class='language-coffeescript'>data =
+  title: 'Express 3‐Handlebars sample'
+  name: 'Express 3‐Handlebars'
+  content: 'This is a simple example to demonstrate Express 3‐Handlebars'
+  newURL: 'http://aralbalkan.com'
+  correctURLFragment: 'moderniosdevelopment'
+  aralImageURL: 'http://aralbalkan.com/images/aral.jpg'
+  friends:
+  [
+    {name: 'Laura', skills: 'design, development, illustration, speaking'},
+    {name: 'Seb', skills: 'particles, games, JavaScript, C++'},
+    {name: 'Natalie', skills: 'HTML, CSS'}
+  ]</code></pre>
+
+        <h2>Express 3 router (node.js)</h2>
+        <pre><code class='language-coffeescript'>exports.route = (request, response) ->
+  response.render 'simple', data</code></pre>
+    </section>
+
+    <script src='js/prism.js'></script>
+
+</body>
+</html>

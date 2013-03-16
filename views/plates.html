@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width'>
+    <title data-tally-text='title'></title>
+
+    <link rel='stylesheet' type='text/css' href='css/base.css'>
+    <link data-tally-dummy rel='stylesheet' type='text/css' href='css/tally-highlights.css'>
+
+    <!-- Syntax highlighting for the code -->
+    <link rel='stylesheet' type='text/css' href='css/prism.css'>
+    <script data-tally-dummy src='js/tally-highlights.js'></script>
+
+    <link rel='stylesheet' type='text/css' href='css/simple.css'>
+
+</head>
+<body>
+
+    <nav>
+        <h1><a href='/'>Home</a></h1>
+    </nav>
+
+    <ul class='tabs'>
+        <a href='/simple'><li data-tally-attribute='tab' class='tab'>Rendered</li></a>
+        <a href='/simple.html'><li data-tally-attribute='tab'>Tally</li></a>
+        <a href='/handlebars.html'><li class='tab'>Handlebars</li></a>
+        <a href='/plates.html'><li class='tab selected'>Plates</li></a>
+    </ul>
+
+    <section id='summary'>
+      <h1>Plates example</h1>
+      <p>This is the template as rendered by Plates from the FlatIron framework. Even though the template is unobtrusive and pure HTML, Plates requires mapping code to be written, making it cumbersome and error‐prone to use. Tally requires no mapping code.</p>
+    </section>
+
+    <section id='template'>
+        <div>
+            <!-- Template source -->
+
+            <h1 id='title'>A placeholder title</h1>
+            <p>Hello from <span data-content="name">name</span>!<p>
+
+            <p class="target">This paragraph is a placeholder.</p>
+
+            <p><a href='/'>This should link to Aral’s homepage.</a></p>
+
+            <p><a href='http://aralbalkan.com'>This should link to the Modern iOS Development workshop.</a></p>
+
+            <p>This should be Aral’s headshot:</p>
+
+            <img data-content='photo' src='http://placehold.it/600x600'>
+
+            <h2>Friends and their skills</h2>
+
+            <ul class='friends-list'>
+                <li class='friend'>
+                    <p><span class='name'>Name</span> knows <span class='skills'>skills</span>.</p>
+                </li>
+            </ul>
+
+            <p class='no-friends-warning'>No friends found.</p>
+
+        </div>
+    </section>
+
+    <section id='source'>
+        <h2>HTML</h2>
+        <pre><code class='language-markup'>&lt;h1 id=&#039;title&#039;&gt;A placeholder title&lt;/h1&gt;
+&lt;p&gt;Hello from &lt;span data-content=&quot;name&quot;&gt;name&lt;/span&gt;!&lt;p&gt;
+
+&lt;p class=&quot;target&quot;&gt;This paragraph is a placeholder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#039;/&#039;&gt;This should link to Aral&rsquo;s homepage.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#039;http://aralbalkan.com&#039;&gt;This should link to the Modern iOS Development workshop.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This should be Aral&rsquo;s headshot:&lt;/p&gt;
+
+&lt;img data-content=&#039;photo&#039; src=&#039;http://placehold.it/600x600&#039;&gt;
+
+&lt;h2&gt;Friends and their skills&lt;/h2&gt;
+
+&lt;ul class=&#039;friends-list&#039;&gt;
+  &lt;li class=&#039;friend&#039;&gt;
+    &lt;p&gt;&lt;span class=&#039;name&#039;&gt;Name&lt;/span&gt; knows &lt;span class=&#039;skills&#039;&gt;skills&lt;/span&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&#039;no-friends-warning&#039;&gt;No friends found.&lt;/p&gt;</code></pre>
+    </section>
+
+    <section id='server'>
+        <h2>Data + Map</h2>
+        <pre id='data'><code class='language-coffeescript'>data =
+  title: 'Express 3‐Plates sample'
+  name: 'Express 3‐Plates'
+  content: 'This is a simple example to demonstrate Express 3‐Plates.'
+  newURL: 'http://aralbalkan.com'
+  correctURLFragment: 'moderniosdevelopment'
+  aralImageURL: 'http://aralbalkan.com/images/aral.jpg'
+  friend:
+  [
+    {name: 'Laura', skills: 'design, development, illustration, speaking'},
+    {name: 'Seb', skills: 'particles, games, JavaScript, C++'},
+    {name: 'Natalie', skills: 'HTML, CSS'}
+  ]
+
+  map = plates.Map()
+
+  # Tag
+  # Note: Bug in plates: If title tag already has text content it is not replaced.
+  map.tag('title').use('title')
+
+  # By class
+  map.class('target').to('content')
+
+  # By ID
+  map.where('id').is('title').to('title')
+
+  # By attribute selector
+  map.where('data-content').is('name').to('name')
+
+  # Replace an attribute if it is a match
+  map.where('href').is('/').insert('newURL')
+
+  # Partial value replacement
+  map.where('href').has(/aralbalkan/).insert('correctURLFragment')
+
+  # Arbitrary attributes
+  map.where('data-content').is('photo').use('aralImageURL').as('src')
+
+  # Collections
+  # Note: class name must match the data name exactly
+  map.class('friend').use('friend')
+  map.class('name').use('name')
+  map.class('skills').use('skills')
+
+  # Conditionals
+  if friends
+    map.class('no-friends-warning').remove()
+  else
+    map.class('friends-list').remove()</code></pre>
+
+        <h2>Express 3 router (node.js)</h2>
+        <pre><code class='language-coffeescript'>exports.route = (request, response) ->
+  response.render 'simple', { data: data, map: map }</code></pre>
+    </section>
+
+    <script src='js/prism.js'></script>
+
+</body>
+</html>

@@ -22,7 +22,10 @@ window.addEventListener('load', function () {
         //               as it might look disabled to the user. Also it is clearly
         //               demarcated from the rest of the document as a control so it
         //               won’t be mistaken for a document item.
+        //
+        // NB. Also added the template summary to the special case.
         document.getElementById('tallyControls').classList.remove('show')
+        document.getElementById('tally-template-summary').classList.remove('show')
 
         toggleState = !toggleState;
         button.innerHTML = (toggleState ? 'Hide' : 'Show') + ' highlights';
