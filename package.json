@@ -1,7 +1,7 @@
 {
     "name": "tally",
     "description": "Tally is a simple, unobtrusive JavaScript template engine for Express/Node and browser.",
-    "version": "0.0.1-15",
+    "version": "0.0.1-17",
     "author": "Aral Balkan <aral@aralbalkan.com>",
     "repository": {
         "type": "git",
@@ -15,10 +15,9 @@
         "jsdom": "0.5.1",
         "express": "3.0.x",
         "superagent": "0.12.4",
-        "ghm": "1.0.0-3"
+        "ghm": "1.0.0-3",
     },
     "devDependencies": {
-        "nodemon": "0.7.2",
         "coffee-script": "1.6.1"
     },
     "contributors": [

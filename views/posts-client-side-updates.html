@@ -26,18 +26,34 @@
   			refreshTimelineButton.addEventListener('click', function(){
 
   				refreshTimelineButton.disabled = true;
-  				progressIndicator.classList.toggle('hide')
+  				progressIndicator.classList.toggle('hide');
 
-				superagent.get('https://alpha-api.app.net/stream/0/posts/stream/global').end(function(error, globalTimelineResponse) {
+  				var lastID = tally.data.meta.max_id;
+
+				superagent
+					.get('https://alpha-api.app.net/stream/0/posts/stream/global')
+					.query({since_id: lastID})
+					.end(function(error, globalTimelineResponse) {
 
 					  refreshTimelineButton.disabled = false;
 					  progressIndicator.classList.toggle('hide');
 
 				      var globalTimeline;
-				      globalTimelineResponse.body.numberOfPosts = function() {
-				        return this.data.length;
-				      };
 				      globalTimeline = globalTimelineResponse.body;
+
+				      var numberOfNewPosts = globalTimeline.data.length;
+				      var numberOfExistingPosts = tally.data.data.length;
+
+				      if (0 == numberOfNewPosts) return;
+
+				      globalTimeline.numberOfPosts = numberOfNewPosts + numberOfExistingPosts;
+
+				      // Add the new data to the existing data
+				      globalTimeline.data = globalTimeline.data.concat(tally.data.data);
+
+				      // And save the current data as the tally data
+				      tally.data = globalTimeline;
+
 				      if (error) {
 				        globalTimeline.errorType = 'Network';
 				        globalTimeline.error = error;
@@ -46,7 +62,7 @@
 				        globalTimeline.errorType = 'App.net';
 				        globalTimeline.error = "(#" + globalTimeline.meta.code + ") " + globalTimeline.meta.error_message;
 				      }
-				      tally(document.body, globalTimelineResponse.body);
+				      tally(document.body, globalTimeline);
 				    });
   			});
   		});

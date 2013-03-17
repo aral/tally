@@ -32,16 +32,33 @@ exports.__express = (path, data, callback) ->
 		# in the data object to the Tally object in the DOM.
 		#
 
+		#
 		# Copy custom formatter(s), if any.
 		# (Use custom formatters to modify values before they are rendered.)
+		#
 		customFormatters = data.__tally['formatters']
 		if customFormatters
 			window.tally.format[customFormatter] = customFormatters[customFormatter] for customFormatter of customFormatters
 
+		#
 		# Copy the beforeAttr and beforeText hooks.
 		# (Use hooks to perform actions before a node is modified—e.g., animate, run debug code.)
+		#
 		window.tally.beforeAttr = data.__tally['beforeAttr']
 		window.tally.beforeText = data.__tally['beforeText']
+
+		#
+		# Inject Data option: if set, this will result in a copy
+		# of the data being injected into the template at tally.data
+		# (Useful if you want to append to it via Ajax calls, etc.
+		# When rendering a timeline, for example.)
+		#
+		if data.__tally['injectData']
+			head = window.document.getElementsByTagName('head')[0]
+			script = window.document.createElement('script')
+			script.setAttribute('type', 'text/javascript')
+			script.textContent = 'tally.data = ' + JSON.stringify(data, null, 2) + ';'
+			head.appendChild(script)
 
 		#
 		# Save the data on the DOM and run Tally.

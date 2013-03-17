@@ -17,11 +17,16 @@ exports.route = (request, response) ->
 
         .end (error, globalTimelineResponse) ->
 
+            globalTimeline = globalTimelineResponse.body
+
             # Attach a custom function to the data to count the number of posts
-            globalTimelineResponse.body.numberOfPosts = ->
+            globalTimeline.numberOfPosts = ->
                 return this.data.length
 
-            globalTimeline = globalTimelineResponse.body
+            # Ask for the data to be injected into the rendered template
+            # (we’re going to append to it via Ajax calls on the client‐side to render an
+            # expanding timeline of App.net posts.)
+            globalTimeline.__tally = { injectData: yes }
 
             # Handle network and App.net errors gracefully.
             if error
@@ -40,4 +45,4 @@ exports.route = (request, response) ->
             	globalTimeline.error = "(##{globalTimeline.meta.code}) #{globalTimeline.meta.error_message}"
 
             # Render the response
-            response.render 'posts-client-side-updates', globalTimelineResponse.body
+            response.render 'posts-client-side-updates', globalTimeline
