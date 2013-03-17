@@ -15,7 +15,7 @@
         "jsdom": "0.5.1",
         "express": "3.0.x",
         "superagent": "0.12.4",
-        "ghm": "1.0.0-3",
+        "ghm": "1.0.0-3"
     },
     "devDependencies": {
         "coffee-script": "1.6.1"
