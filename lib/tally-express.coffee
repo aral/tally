@@ -41,11 +41,11 @@ exports.__express = (path, data, callback) ->
 			window.tally.format[customFormatter] = customFormatters[customFormatter] for customFormatter of customFormatters
 
 		#
-		# Copy the beforeAttr and beforeText hooks.
-		# (Use hooks to perform actions before a node is modified—e.g., animate, run debug code.)
+		# Copy the attributeWillChange and textWillChange hooks.
+		# (Use these hooks to perform actions before a node is modified—e.g., animate, run debug code.)
 		#
-		window.tally.beforeAttr = data.__tally['beforeAttr']
-		window.tally.beforeText = data.__tally['beforeText']
+		window.tally.attributeWillChange = data.__tally['attributeWillChange']
+		window.tally.textWillChange = data.__tally['textWillChange']
 
 		#
 		# Inject Data option: if set, this will result in a copy

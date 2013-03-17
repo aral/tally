@@ -68,6 +68,11 @@ footer
 	line-height: 18px;
 }
 
+acronym
+{
+	border-bottom: 1px dashed gray;
+}
+
 #short-description
 {
 	text-align: center;

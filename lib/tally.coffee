@@ -61,8 +61,8 @@ tally = (root, obj) ->
 
   #TAL attributes for querySelectorAll call
   qdef = tally
-  beforeAttr = qdef.beforeAttr
-  beforeText = qdef.beforeText
+  attributeWillChange = qdef.attributeWillChange
+  textWillChange = qdef.textWillChange
   qif = qdef.qif or "data-tally-if"
   qrepeat = qdef.qrepeat or "data-tally-repeat"
   qattr = qdef.qattr or "data-tally-attribute"
@@ -348,7 +348,7 @@ tally = (root, obj) ->
         throw attr  unless attr[1]
         value = resolve(obj, attr[1])
         value = ""  if value is `undefined`
-        beforeAttr node, name, value  if beforeAttr
+        attributeWillChange node, name, value  if attributeWillChange
         value = attr(value)  if attr = attr[2] and format[attr[2]]
         if altAttr[name]
           switch name
@@ -376,7 +376,7 @@ tally = (root, obj) ->
       html = (attr[0] is "html")
       attr2 = resolve(obj, attr[(if html then 1 else 0)])
       attr2 = ""  if attr2 is `undefined`
-      beforeText node, attr2  if beforeText
+      textWillChange node, attr2  if textWillChange
       attr2 = attr(attr2)  if (attr = attr[(if html then 2 else 1)]) and (attr = format[attr])
       if html
         node.innerHTML = attr2
