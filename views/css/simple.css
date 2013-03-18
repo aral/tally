@@ -3,6 +3,25 @@ html
 	min-width: 350px;
 }
 
+#introduction
+{
+	max-width: 480px;
+	margin: 36px auto;
+	padding: 0 24px;
+}
+
+#introduction h2
+{
+	margin: 24px 0;
+	text-align: center;
+}
+
+.rendered-summary
+{
+	max-width:480px;
+	/*margin: 0 auto;*/
+}
+
 #template, #source
 {
 	margin: 0 48px;

@@ -13,6 +13,7 @@
 data =
     title: 'Tally sample'
     name: 'Tally'
+    class: 'rendered-summary'
     content: 'This is a simple example to demonstrate Tally, a templating engine for Express (node.js) and client‐side JavaScript.'
     newURL: 'http://aralbalkan.com'
     correctURLFragment: 'moderniosdevelopment'

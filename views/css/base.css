@@ -11,10 +11,16 @@ body
 	line-height: 24px;
 	font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;
 	height: 100%;
+	text-align: justify;
+
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
 }
 
 nav
 {
+  display:none;
   position: fixed;
   top: 0;
   left: 0;
@@ -37,6 +43,7 @@ h1,h2
 {
 	font-weight:500;
 	margin-bottom: 24px;
+	margin-top: 24px;
 }
 
 h2
@@ -68,10 +75,20 @@ footer
 	line-height: 18px;
 }
 
-acronym
+abbr
 {
-	border-bottom: 1px dashed gray;
+	border-bottom: 1px dotted gray;
 }
+
+
+#tally-logo
+{
+	width:240px;
+	/*position: fixed;*/
+	margin: 0 auto;
+	display:block;
+}
+
 
 #short-description
 {
@@ -85,10 +102,11 @@ acronym
 	list-style-type: none;
 	border-bottom: 10px solid #95a5a6;
 	text-align:right;
-	padding-top: 24px;
+	padding-top: 0px;
 	padding-bottom: 0;
 	overflow: hidden;
 	display:block;
+	margin-top: -12px;
 }
 
 .tabs li

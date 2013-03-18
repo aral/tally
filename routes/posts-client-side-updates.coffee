@@ -26,7 +26,8 @@ exports.route = (request, response) ->
             # Ask for the data to be injected into the rendered template
             # (we’re going to append to it via Ajax calls on the client‐side to render an
             # expanding timeline of App.net posts.)
-            globalTimeline.__tally = { injectData: yes }
+            globalTimeline.__tally =
+                injectData: yes
 
             # Handle network and App.net errors gracefully.
             if error

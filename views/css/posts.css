@@ -8,9 +8,18 @@ body
 	max-width: 768px;
 	line-height: 2;	/* 24px/16px */
 	font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	margin: 2.25em auto;
+	margin: 0 auto;
 	margin-bottom: 96px;
 	color: #404040;
+}
+
+#tally-logo
+{
+	width:240px;
+	/*position: fixed;*/
+	margin: 0 auto;
+	margin-bottom: 48px;
+	display:block;
 }
 
 h1
