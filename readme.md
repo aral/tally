@@ -9,7 +9,7 @@ Getting started
 
 Install Tally (and Tally Express):
 
-```npm install tally-template```
+```npm install tally```
 
 Start the server to play with the examples:
 
