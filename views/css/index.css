@@ -1,5 +1,45 @@
 body
 {
 	margin: 0 auto;
-	max-width: 480px;
+	padding: 0 48px;
+	max-width: 960px;
+}
+
+
+#features
+{
+	padding-left:0;
+	list-style: none;
+
+	-moz-column-gap: 48px;
+	-webkit-column-gap: 48px;
+	column-gap: 48px;
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-count: 3;
+}
+
+@media only screen and (max-width:850px)
+{
+	#features
+	{
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
+	}
+}
+
+@media only screen and (max-width:680px)
+{
+	#features
+	{
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+	}
+
+	body
+	{
+		padding: 0;
+	}
 }
