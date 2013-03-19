@@ -2,12 +2,14 @@
 
 Tally is a simple, unobtrusive, design‐led JavaScript template engine for Node and client.
 
+**Currently in alpha and under heavy development.** You can play around with it but there is very little documentation and the API might change.
+
 Getting started
 ---
 
 Install Tally (and Tally Express):
 
-```npm install tally```
+```npm install tally-template```
 
 Start the server to play with the examples:
 
