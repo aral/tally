@@ -16,6 +16,8 @@ body
 	-moz-hyphens: auto;
 	-webkit-hyphens: auto;
 	hyphens: auto;
+
+	color: #252525;
 }
 
 nav
@@ -64,7 +66,8 @@ li
 a
 {
 	text-decoration: none;
-	color: #7f8c8d;
+	/*color: #7f8c8d;*/
+	color: #135BA4;
 }
 
 footer
@@ -84,7 +87,7 @@ abbr
 #tally-logo
 {
 	width:100%;
-	max-width:320px;
+	max-width: 320px;
 	/*position: fixed;*/
 	margin: 0 auto;
 	display:block;
@@ -101,7 +104,7 @@ abbr
 .tabs
 {
 	list-style-type: none;
-	border-bottom: 10px solid #95a5a6;
+	border-bottom: 10px solid #b5d5ee;
 	text-align:right;
 	padding-top: 0px;
 	padding-bottom: 0;
@@ -117,14 +120,14 @@ abbr
 	padding: 0 10px;
 	-webkit-border-radius: 6px 6px 0 0;
 	border-radius: 6px 6px 0 0;
-	background-color: #7f8c8d;
+	background-color: rgba(0, 0, 0, 0.1);
 	float:left;
 	color: #404040;
 }
 
 li.selected
 {
-	background-color: #95a5a6;
+	background-color: #b5d5ee;
 	color: #252525;
 }
 

@@ -20,7 +20,7 @@ body
 
 #alpha-notice
 {
-	background-color: rgba(251,166,23, 0.32);
+	background-color: #FFEEBE; /*rgba(251,166,23, 0.32) */
 	padding: 12px;
 	margin: 0 -12px;
 }
