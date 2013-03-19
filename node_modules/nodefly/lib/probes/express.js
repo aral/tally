@@ -1,0 +1,44 @@
+var nf = require('../nodefly');
+var proxy = require('../proxy');
+var samples = require('../samples');
+var topFunctions = require('../topFunctions');
+
+
+module.exports = function(express) {
+	
+	// set up route on server init
+	function routeHook(obj, args, router) {
+		var method = args[0].toUpperCase();
+		var path = args[1];
+		var route;
+
+		// start request
+		proxy.callback(args, -1, function(obj, args) {
+			if(nf.paused) return;
+
+			var req = args[0];
+			var res = args[1];
+			var time = samples.time("Express Server", path, true);
+			
+			// finish request
+			proxy.after(res, 'end', function(obj, args) {
+				if(!time.done()) return;
+
+				route = route || (method + ' ' + (res.app.route === '/' ? '' : res.app.route) + path);
+				topFunctions.add('expressCalls', route, time.ms, time.cputime, req.tiers, req.graph);
+			});
+		});
+
+	}
+	
+	if (express.Router) { // express 3.x exposes the Router class directly
+		proxy.before(express.Router.prototype, ['route'], routeHook);
+	}
+	else { // express 2.x exposes the router object once the server is created
+		proxy.after(express, 'createServer', function(obj, args, app) {
+			proxy.before(app.routes, ['_route'], routeHook);
+		});
+	}
+	
+};
+

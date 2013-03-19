@@ -1,0 +1,54 @@
+var tiers = require('./tiers');
+
+setInterval(function(){
+var t = parseInt(new Date().getTime()/1000);
+var r = (t%360) * 2*Math.PI/360;
+console.log (t, Math.sin(r));
+}, 1000);
+
+/*
+tiers.sample('http',10);
+tiers.sample('http',20);
+tiers.sample('mysql',50);
+tiers.sample('mysql',150);
+*/
+
+ask("#", /.*/, function(){
+	process.exit();
+});
+
+/*
+ask("Name", /.+/, function(name) {
+  ask("Email", /^.+@.+$/, function(email) {
+    console.log("Your name is: ", name);
+    console.log("Your email is:", email);
+ 
+    process.exit();
+  });
+});
+*/
+
+/*
+function foo () {
+console.log('foo');
+}
+
+console.log(foo.toString());
+*/
+
+
+function ask(question, format, cb) {
+	process.stdin.resume();
+	process.stdout.write(question + " ");
+ 
+	process.stdin.once('data', function(data) {
+		data = data.toString().trim();
+ 
+		if (format.test(data)) {
+			cb(data);
+		} else {
+			process.stdout.write("It should match: " + format + "\n");
+			ask(question, format, cb);
+		}
+	});
+}
