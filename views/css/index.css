@@ -25,6 +25,12 @@ body
 	margin: 0 -12px;
 }
 
+#hello-badge-image
+{
+	width: 290px;
+	margin-right: 48px;
+}
+
 @media only screen and (max-width:850px)
 {
 	#features
