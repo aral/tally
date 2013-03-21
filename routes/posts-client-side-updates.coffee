@@ -20,8 +20,11 @@ exports.route = (request, response) ->
             globalTimeline = globalTimelineResponse.body
 
             # Attach a custom function to the data to count the number of posts
-            globalTimeline.numberOfPosts = ->
-                return this.data.length
+            globalTimelineResponse.body.numberOfPosts = ->
+                if this.data
+                    return this.data.length
+                else
+                    return 0
 
             # Ask for the data to be injected into the rendered template
             # (we’re going to append to it via Ajax calls on the client‐side to render an
@@ -36,10 +39,6 @@ exports.route = (request, response) ->
             	globalTimeline.error = error
 
             else if not globalTimeline.data
-
-            	# FIX: This is a workaround for a limitation in Tally at the moment
-            	# where a node is not removed if a conditional fails.
-            	globalTimeline.data = []
 
             	# There was an App.net error
             	globalTimeline.errorType = 'App.net'

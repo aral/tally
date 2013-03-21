@@ -61,6 +61,20 @@ exports.__express = (path, data, callback) ->
 			head.appendChild(script)
 
 		#
+		# Static output option: if set, tally will strip the following
+		# from templates rendered on the server:
+		#
+		# 1. All Tally attributes
+		# 2. Any elements with falsy values for data-tally-if
+		#
+		# (Note: any elements marked data-tally-dummy are stripped from
+		#  ===== final output regardless of this setting. Also, this setting
+		#        has no effect when Tally is used on the client side.)
+		#
+		if data.__tally['renderStatic']
+			window.tally.renderStatic = yes
+
+		#
 		# Save the data on the DOM and run Tally.
 		#
 		window.data = data

@@ -20,7 +20,7 @@ Forked from Distal by mocking@gmail.com (https://code.google.com/p/distal/)
 tally = (root, obj) ->
   "use strict"
 
-  #create a duplicate object which we can add properties to without affecting the original
+  # Create a duplicate object which we can add properties to without affecting the original.
   wrapper = ->
 
   wrapper:: = obj
@@ -30,10 +30,19 @@ tally = (root, obj) ->
   doc = root.ownerDocument
   querySelectorAll = !!root.querySelectorAll
 
-  #optimize comparison check
+  # Create an empty options object if one was not passed so we don’t have to keep checking for it later.
+  obj.__tally = {} if obj.__tally is undefined
+
+  # Shortcut to flag: are we running on the server?
+  isRunningOnServer = obj.__tally.server
+
+  # Render static option.
+  shouldRenderStatic = isRunningOnServer and obj.__tally.renderStatic
+
+  # Optimize comparison check.
   innerText = (if "innerText" of root then "innerText" else "textContent")
 
-  #attributes which don't support setAttribute()
+  # Attributes that don't support setAttribute()
   altAttr =
     className: 1
     class: 1
@@ -59,7 +68,7 @@ tally = (root, obj) ->
     OPTION: 1
 
 
-  #TAL attributes for querySelectorAll call
+  # TAL attributes for querySelectorAll call
   qdef = tally
   attributeWillChange = qdef.attributeWillChange
   textWillChange = qdef.textWillChange
@@ -69,23 +78,22 @@ tally = (root, obj) ->
   qtext = qdef.qtext or "data-tally-text"
   qdup = qdef.qdup or "data-tally-dummy"
 
-  #output formatter
+  # Output formatter.
   format = qdef.format
-  qdef = qdef.qdef or "data-tally-def"
+  qdef = qdef.qdef or "data-tally-alias"
   TAL = "*[" + [qdef, qif, qrepeat, qattr, qtext].join("],*[") + "]"
   html = undefined
   getProp = (s) ->
     this[s]
 
-
-  #there may be generated node that are siblings to the root node if the root node
-  #itself was a repeater. Remove them so we don't have to deal with them later
+  # There may be generated nodes that are siblings to the root node if the root node
+  # itself was a repeater. Remove them so we don't have to deal with them later.
   tmpNode = root.parentNode
   tmpNode.removeChild node  while (node = root.nextSibling) and (node.qdup or (node.nodeType is 1 and node.getAttribute(qdup)))
 
-  #if we generate repeat nodes and are dealing with non-live NodeLists, then
-  #we add them to the listStack[] and process them first as they won't appear inline
-  #due to non-live NodeLists when we traverse our tree
+  # If we generate repeat nodes and are dealing with non-live NodeLists, then
+  # we add them to the listStack[] and process them first as they won't appear inline
+  # due to non-live NodeLists when we traverse our tree.
   listStack = undefined
   posStack = [0]
   list = undefined
@@ -94,12 +102,12 @@ tally = (root, obj) ->
   attr2 = undefined
   `var undefined = {}._`
 
-  #get a list of concerned nodes within this root node. If querySelectorAll is
-  #supported we use that but it is treated differently because it is a non-live NodeList.
+  # Get a list of concerned nodes within this root node. If querySelectorAll is
+  # supported we use that but it is treated differently because it is a non-live NodeList.
   if querySelectorAll
 
-    #remove all generated nodes (repeats), so we don't have to deal with them later.
-    #Only need to do this for non-live NodeLists.
+    # Remove all generated nodes (repeats), so we don't have to deal with them later.
+    # Only need to do this for non-live NodeLists.
     list = root.querySelectorAll("*[" + qdup + "]")
     node.parentNode.removeChild node  while (node = list[pos++])
     pos = 0
@@ -111,30 +119,30 @@ tally = (root, obj) ->
   loop
     node = list[pos++]
 
-    #when finished with the current list, there are generated nodes and
-    #their children that need to be processed.
+    # When finished with the current list, there are generated nodes and
+    # their children that need to be processed.
     while not node and (list = listStack.pop())
       pos = posStack.pop()
       node = list[pos++]
     break unless node
 
-    #creates a shortcut to an object
-    #e.g., <section qdef="feeds main.sidebar.feeds">
+    # Creates an alias for an object
+    # e.g., <section data-tally-alias='feeds main.sidebar.feeds'>
     attr = node.getAttribute(qdef)
     if attr
       attr = attr.split(" ")
 
-      #add it to the object as a property
+      # Add it to the object as a property.
       html = resolve(obj, attr[1])
 
-      #the 3rd parameter if exists is a numerical index into the array
+      # The 3rd parameter, if it exists, is a numerical index into the array.
       if attr2 = attr[2]
         obj["#"] = parseInt(attr2) + 1
         html = html[attr2]
       obj[attr[0]] = html
 
-    #shown if object is truthy
-    #e.g., <img qif="item.unread"> <img qif="item.count gt 1">
+    # Shown if object is truthy.
+    # e.g., <img data-tally-if='item.unread'> <img data-tally-if='item.count gt 1'>
     attr = node.getAttribute(qif)
     if attr
       attr = attr.split(" ")
@@ -166,20 +174,20 @@ tally = (root, obj) ->
       else
         attr = obj2
       if attr
-        node.style.display = ""  if obj.__tally is `undefined`
+        node.style.display = "" if not shouldRenderStatic
       else
 
-        # Handle hiding differently based on whether we are running in Express
-        # with Tally or on the client. (On the server we actually remove the
-        # nodes instead of hiding them to cut down on traffic and so that they
-        # can be used to populate templates with dummy data.)
+        # Handle hiding differently based on whether user has flagged that
+        # we should render static HTML from the server. (If so, remove the
+        # nodes instead of hiding them to cut down on traffic.)
 
-        #skip over all nodes that are children of this node
+        # Skip over all nodes that are children of this node.
         if querySelectorAll
           pos += node.querySelectorAll(TAL).length
         else
           pos += node.getElementsByTagName("*").length
-        if obj.__tally isnt `undefined` and obj.__tally.server
+
+        if shouldRenderStatic
           node.parentNode.removeChild node
         else
           node.style.display = "none"
@@ -207,19 +215,15 @@ tally = (root, obj) ->
       if objList and objList.length
 
         # Don’t set the style if on the server (as we don’t on anything)
-        node.style.display = ""  if obj.__tally is `undefined` or obj.__tally.server is no
+        node.style.display = ""  if shouldRenderStatic
 
-        #allow this node to be treated as index zero in the repeat list
-        #we do this by setting the shortcut variable to array[0]
+        # Allow this node to be treated as index zero in the repeat list
+        # we do this by setting the shortcut variable to array[0]
         obj[attr2[0]] = objList[0]
         obj["#"] = 1
       else
 
-        # Handling hiding differently depending on whether this is running on the
-        # client or as part of Tally on the server.
-        if obj.__tally isnt `undefined` and obj.__tally.server
-
-          # Running in Tally as part of Express.
+        if shouldRenderStatic
           # Delete the node
           if querySelectorAll
             pos += node.querySelectorAll(TAL).length
@@ -230,25 +234,25 @@ tally = (root, obj) ->
           node.parentNode.removeChild node
         else
 
-          # Not running in Tally (assume its running in the client)
           # Just hide the object and skip its children.
 
-          #we need to hide the repeat node if the object doesn't resolve
+          # We need to hide the repeat node if the object doesn't resolve.
           node.style.display = "none"
 
-          #skip over all nodes that are children of this node
+          # Skip over all nodes that are children of this node.
           if querySelectorAll
             pos += node.querySelectorAll(TAL).length
           else
             pos += node.getElementsByTagName("*").length
 
-        #stop processing the rest of this node as it is invisible
+        # Stop processing the rest of this node as it is invisible.
         continue
+
       if objList.length > 1
 
-        #we need to duplicate this node x number of times. But instead
-        #of calling cloneNode x times, we get the outerHTML and repeat
-        #that x times, then innerHTML it which is faster
+        # We need to duplicate this node x number of times. But instead
+        # of calling cloneNode x times, we get the outerHTML and repeat
+        # that x times, then innerHTML it which is faster.
         html = new Array(objList.length - 1)
         len = html.length
         i = len
@@ -263,15 +267,15 @@ tally = (root, obj) ->
         tmpNode.setAttribute qdup, "1"
         tmpNode = tmpNode.outerHTML or doc.createElement("div").appendChild(tmpNode).parentNode.innerHTML
 
-        #we're doing something like this:
-        #html = "<div qdef=" + [1,2,3].join("><div qdef=") + ">"
+        # We're doing something like this:
+        # html = "<div data-tally-alias=' + [1,2,3].join('><div data-tally-alias=') + '>'
         prefix = tmpNode.indexOf(" " + qdef + "=\"" + attr + "\"")
         prefix = tmpNode.indexOf(" " + qdef + "='" + attr + "'")  if prefix is -1
         prefix = prefix + qdef.length + 3 + attr.length
         html = tmpNode.substr(0, prefix) + " " + html.join(tmpNode.substr(prefix) + tmpNode.substr(0, prefix) + " ") + tmpNode.substr(prefix)
         tmpNode = doc.createElement("div")
 
-        #workaround for IE which can't innerHTML tables and selects
+        # Workaround for IE which can't innerHTML tables and selects.
         if "cells" of node and not ("tBodies" of node) #TR
           tmpNode.innerHTML = "<table>" + html + "</table>"
           tmpNode = tmpNode.firstChild.tBodies[0].childNodes
@@ -288,34 +292,34 @@ tally = (root, obj) ->
         attr2 = node.nextSibling
         if querySelectorAll or node is root
 
-          #push the current list and index to the stack and process the repeated
-          #nodes first. We need to do this inline because some variable may change
-          #value later, if the become redefined.
+          # Push the current list and index to the stack and process the repeated
+          # nodes first. We need to do this inline because some variable may change
+          # value later, if the become redefined.
           listStack.push list
           posStack.push pos
 
-          #add this node to the stack so that it is processed right before we pop the
-          #main list off the stack. This will be the last node to be processed and we
-          #use it to assign our repeat variable to array index 0 so that the node's
-          #children, which are also at array index 0, will be processed correctly
+          # Add this node to the stack so that it is processed right before we pop the
+          # main list off the stack. This will be the last node to be processed and we
+          # use it to assign our repeat variable to array index 0 so that the node's
+          # children, which are also at array index 0, will be processed correctly.
           list = getAttribute: getProp
           list[qdef] = attr + " 0"
           listStack.push [list]
           posStack.push 0
 
-          #clear the current list so that in the next round we grab another list
-          #off the stack
+          # Clear the current list so that in the next round we grab another list
+          # off the stack.
           list = []
           i = tmpNode.length - 1
 
           while i >= 0
             html = tmpNode[i]
 
-            #we need to add the repeated nodes to the listStack because
-            #we are either (1) dealing with a live NodeList and we are still at
-            #the root node so the newly created nodes are adjacent to the root
-            #and so won't appear in the NodeList, or (2) we are dealing with a
-            #non-live NodeList, so we need to add them to the listStack
+            # We need to add the repeated nodes to the listStack because
+            # we are either (1) dealing with a live NodeList and we are still at
+            # the root node so the newly created nodes are adjacent to the root
+            # and so won't appear in the NodeList, or (2) we are dealing with a
+            # non-live NodeList, so we need to add them to the listStack.
             listStack.push (if querySelectorAll then html.querySelectorAll(TAL) else html.getElementsByTagName("*"))
             posStack.push 0
             listStack.push [html]
@@ -333,8 +337,8 @@ tally = (root, obj) ->
             i--
         prefix.selectedIndex = -1
 
-    #set multiple attributes on the node
-    #e.g., <div qattr="value item.text; disabled item.disabled">
+    # Set multiple attributes on the node.
+    # e.g., <div data-tally-attribute='value item.text; disabled item.disabled'>
     attr = node.getAttribute(qattr)
     if attr
       name = undefined
@@ -368,8 +372,8 @@ tally = (root, obj) ->
           node.setAttribute name, value
         i--
 
-    #sets the innerHTML on the node
-    #e.g., <div qtext="html item.description">
+    # Sets the innerHTML on the node.
+    # e.g., <div data-tally-text='html item.description'>
     attr = node.getAttribute(qtext)
     if attr
       attr = attr.split(" ")
@@ -384,7 +388,7 @@ tally = (root, obj) ->
         node[(if "form" of node and not formInputHasBody[node.tagName] then "value" else innerText)] = attr2
 #end while
 
-#follows the dot notation path to find an object within an object: obj["a"]["b"]["1"] = c;
+# Follows the dot notation path to find an object within an object: obj["a"]["b"]["1"] = c;
 tally.resolve = (obj, seq, x, lastObj) ->
 
   #if fully qualified path is at top level: obj["a.b.d"] = c
@@ -399,13 +403,13 @@ tally.resolve = (obj, seq, x, lastObj) ->
   (if (typeof obj is "function") then obj.call(lastObj, seq.join(".")) else obj)
 
 
-#number formatters
+# Number formatters
 tally.format = ",.": (v, i) ->
   i = v * 1
   (if isNaN(i) then v else ((if i % 1 then i.toFixed(2) else parseInt(i, 10) + "")).replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:$|\.))/g, "$1,"))
 
 
-#support RequireJS module pattern
+# Support RequireJS module pattern
 if typeof define is "function" and define.amd
   define "tally", ->
     tally
