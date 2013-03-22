@@ -149,7 +149,7 @@ tally = (root, obj) ->
       attr = [attr[0].substr(4), "not", 0]  if attr[0].indexOf("not:") is 0
       obj2 = resolve(obj, attr[0])
 
-      #if obj is empty array it is still truthy, so make it the array length
+      # If obj is empty array it is still truthy, so make it the array length.
       obj2 = obj2.length  if obj2 and obj2.join and obj2.length > -1
       if attr.length > 2
         attr[2] = attr.slice(2).join(" ")  if attr[3]
@@ -192,13 +192,13 @@ tally = (root, obj) ->
         else
           node.style.display = "none"
 
-        #stop processing the rest of this node as it is invisible
+        # Stop processing the rest of this node as it is invisible.
         continue
 
-    #duplicate the current node x number of times where x is the length
-    #of the resolved array. Create a shortcut variable for each iteration
-    #of the loop.
-    #e.g., <div qrepeat="item feeds.items">
+    # Duplicate the current node x number of times where x is the length
+    # of the resolved array. Create a shortcut variable for each iteration
+    # of the loop.
+    # e.g., <div data-tally-repeat='item feeds.items'>
     attr = node.getAttribute(qrepeat)
 
     if attr
