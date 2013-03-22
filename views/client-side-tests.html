@@ -67,7 +67,7 @@
       </ul>
       <span data-tally-repeat="m list">
         <!-- Don’t add the comma before the first item in the list. -->
-        <span data-tally-dummy>three, comma‐separated</span><span data-tally-if="# ne 1">, </span>
+        <span data-tally-dummy>three, comma‐separated</span><span data-tally-if="# isNot 1">, </span>
         <span data-tally-text="m">items</span>
     </span>
     </section>
@@ -92,8 +92,8 @@
       <h2>data-tally-repeat (with array length of 1)</h2>
       <ul>
         <li data-tally-repeat="m oneList" data-tally-text="m">(There will be 1 bullet)</li>
-        <li data-tally-dummy="1">(There will be 1 bullet)</li>
-        <li data-tally-dummy="1">(There will be 1 bullet)</li>
+        <li data-tally-dummy>(There will be 1 bullet)</li>
+        <li data-tally-dummy>(There will be 1 bullet)</li>
       </ul>
     </section>
 
@@ -119,18 +119,18 @@
       <ul>
         <li data-tally-if="value">5 is truthy</li>
         <li data-tally-if="nullList">null is falsy</li>
-        <li data-tally-if="value gt 3">5 &gt; 3</li>
-        <li data-tally-if="value gt 4">5 &gt; 4</li>
-        <li data-tally-if="value gt 4.5">5 &gt; 4.5</li>
-        <li data-tally-if="value lt 4">5 &lt; 4, hide me!</li>
-        <li data-tally-if="value lt 6">5 &lt; 6</li>
-        <li data-tally-if="value eq 5">5 == 5</li>
-        <li data-tally-if="value ne 5">5 != 5, hide me!</li>
+        <li data-tally-if="value isGreaterThan 3">5 &gt; 3</li>
+        <li data-tally-if="value isGreaterThan 4">5 &gt; 4</li>
+        <li data-tally-if="value isGreaterThan 4.5">5 &gt; 4.5</li>
+        <li data-tally-if="value isLessThan 4">5 &lt; 4, hide me!</li>
+        <li data-tally-if="value isLessThan 6">5 &lt; 6</li>
+        <li data-tally-if="value is 5">5 == 5</li>
+        <li data-tally-if="value isNot 5">5 != 5, hide me!</li>
         <li data-tally-if="not:truthy">not true, hide me!</li>
-        <li data-tally-if="text cn brown fox">"brown fox jumped" contains "brown fox"</li>
-        <li data-tally-if="text nc brown">"brown fox jumped" doesn't contain "brown", hide me!</li>
-        <li data-tally-if="text cn bird">"brown fox jumped" contains "bird", hide me!</li>
-        <li data-tally-if="text nc bird">"brown fox jumped" doesn't contain "bird"</li>
+        <li data-tally-if="text contains brown fox">"brown fox jumped" contains "brown fox"</li>
+        <li data-tally-if="text doesNotContain brown">"brown fox jumped" doesn't contain "brown", hide me!</li>
+        <li data-tally-if="text contains bird">"brown fox jumped" contains "bird", hide me!</li>
+        <li data-tally-if="text doesNotContain bird">"brown fox jumped" doesn't contain "bird"</li>
       </ul>
     </section>
 

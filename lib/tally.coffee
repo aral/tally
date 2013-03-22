@@ -142,7 +142,7 @@ tally = (root, obj) ->
       obj[attr[0]] = html
 
     # Shown if object is truthy.
-    # e.g., <img data-tally-if='item.unread'> <img data-tally-if='item.count gt 1'>
+    # e.g., <img data-tally-if='item.unread'> <img data-tally-if='item.count isGreaterThan 1'>
     attr = node.getAttribute(qif)
     if attr
       attr = attr.split(" ")
@@ -157,17 +157,17 @@ tally = (root, obj) ->
         switch attr[1]
           when "not"
             attr = not obj2
-          when "eq"
+          when "is"     # In Distal, this is eq (equal to)
             attr = (obj2 is attr[2])
-          when "ne"
+          when "isNot"     # In Distal, this is ne (not equal to)
             attr = (obj2 isnt attr[2])
-          when "gt"
+          when "isGreaterThan"     # In Distal, this is gt (greater than)
             attr = (obj2 > attr[2])
-          when "lt"
+          when "isLessThan"     # In Distal, this is lt (less than)
             attr = (obj2 < attr[2])
-          when "cn"
+          when "contains"     # In Distal, this is cn (contains)
             attr = (obj2 and obj2.indexOf(attr[2]) >= 0)
-          when "nc"
+          when "doesNotContain"     # In Distal this is nc (does not contain)
             attr = (obj2 and obj2.indexOf(attr[2]) < 0)
           else
             throw node
