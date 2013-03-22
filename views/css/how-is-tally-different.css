@@ -5,6 +5,19 @@ body
 	max-width: 960px;
 }
 
+#features
+{
+	padding-left:0;
+	list-style: none;
+
+	-moz-column-gap: 48px;
+	-webkit-column-gap: 48px;
+	column-gap: 48px;
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-count: 3;
+}
+
 #alpha-notice
 {
 	background-color: #FFEEBE; /*rgba(251,166,23, 0.32) */
@@ -16,8 +29,7 @@ body
 {
 	width:100%;
 	max-width: 290px;
-	display: block;
-	margin: 0 auto;
+	margin-right: 48px;
 }
 
 .leader
@@ -31,11 +43,8 @@ body
 	vertical-align: top;
 	box-shadow: 5px 5px 5px #ddd;
 	position: relative;
-	text-align: left;
-	-moz-hyphens: none;
-	-webkit-hyphens: none;
-	hyphens: none;
-
+	/*background-color: rgba(170, 200, 228, 0.2);*/
+	/*border-radius: 10px;*/
 }
 
 .leader h2
@@ -74,26 +83,24 @@ body
 	border-top: 1px solid #ccc;
 }
 
-@media only screen and (max-width:1059px)
+@media only screen and (max-width:1010px)
 {
-	.leader, .leader:not(:first-child)
+	#features
 	{
-		display: block;
-		max-width: 600px;
-		min-height: inherit;
-		margin: 24px auto;
-	}
-
-	.action-item, .footnote
-	{
-		position: inherit;
-		margin-top: 12px;
-		width: 100%;
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
 	}
 }
 
 @media only screen and (max-width:680px)
 {
+	#features
+	{
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+	}
 
 	body
 	{
