@@ -19,7 +19,8 @@
         "nodefly": "stable"
     },
     "devDependencies": {
-        "coffee-script": "1.6.1"
+        "coffee-script": "1.6.1",
+        "should": "*"
     },
     "contributors": [
         {

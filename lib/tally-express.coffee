@@ -10,80 +10,88 @@ exports.__express = (path, data, callback) ->
 		if error
 			return callback(error)
 
-		# Create the DOM.
-		document = jsdom.jsdom(template, '2')
-		window = document.createWindow()
-		window.console = console
+		html = render(template, data)
 
-		# Create a private member in the data to communicate with the Tally engine in the DOM.
-		data.__tally = {} unless data.__tally
+		callback null, html
 
-		# Flag so Tally knows it is running on the server
-		# and will remove nodes that don’t satisfy conditionals
-		# (data-qif) instead of setting them to display: none
-		# like it does when running on the client.
-		data.__tally['server'] = yes;
+exports.render = render
 
-		# Create Tally in the DOM.
-		window.run tally
+render = (template, data, callback) ->
+	# Create the DOM.
+	document = jsdom.jsdom(template, '2')
+	window = document.createWindow()
+	window.console = console
 
-		#
-		# Copy over formatters and hooks (if any) from the special __tally namespace
-		# in the data object to the Tally object in the DOM.
-		#
+	# Create a private member in the data to communicate with the Tally engine in the DOM.
+	data.__tally = {} unless data.__tally
 
-		#
-		# Copy custom formatter(s), if any.
-		# (Use custom formatters to modify values before they are rendered.)
-		#
-		customFormatters = data.__tally['formatters']
-		if customFormatters
-			window.tally.format[customFormatter] = customFormatters[customFormatter] for customFormatter of customFormatters
+	# Flag so Tally knows it is running on the server
+	# and will remove nodes that don’t satisfy conditionals
+	# (data-qif) instead of setting them to display: none
+	# like it does when running on the client.
+	data.__tally['server'] = yes;
 
-		#
-		# Copy the attributeWillChange and textWillChange hooks.
-		# (Use these hooks to perform actions before a node is modified—e.g., animate, run debug code.)
-		#
-		window.tally.attributeWillChange = data.__tally['attributeWillChange']
-		window.tally.textWillChange = data.__tally['textWillChange']
+	# Create Tally in the DOM.
+	window.run tally
 
-		#
-		# Inject Data option: if set, this will result in a copy
-		# of the data being injected into the template at tally.data
-		# (Useful if you want to append to it via Ajax calls, etc.
-		# When rendering a timeline, for example.)
-		#
-		if data.__tally['injectData']
-			head = window.document.getElementsByTagName('head')[0]
-			script = window.document.createElement('script')
-			script.setAttribute('type', 'text/javascript')
-			script.textContent = 'tally.data = ' + JSON.stringify(data, null, 2) + ';'
-			head.appendChild(script)
+	#
+	# Copy over formatters and hooks (if any) from the special __tally namespace
+	# in the data object to the Tally object in the DOM.
+	#
 
-		#
-		# Static output option: if set, tally will strip the following
-		# from templates rendered on the server:
-		#
-		# 1. All Tally attributes
-		# 2. Any elements with falsy values for data-tally-if
-		#
-		# (Note: any elements marked data-tally-dummy are stripped from
-		#  ===== final output regardless of this setting. Also, this setting
-		#        has no effect when Tally is used on the client side.)
-		#
-		if data.__tally['renderStatic']
-			window.tally.renderStatic = yes
+	#
+	# Copy custom formatter(s), if any.
+	# (Use custom formatters to modify values before they are rendered.)
+	#
+	customFormatters = data.__tally['formatters']
+	if customFormatters
+		window.tally.format[customFormatter] = customFormatters[customFormatter] for customFormatter of customFormatters
 
-		#
-		# Save the data on the DOM and run Tally.
-		#
-		window.data = data
+	#
+	# Copy the attributeWillChange and textWillChange hooks.
+	# (Use these hooks to perform actions before a node is modified—e.g., animate, run debug code.)
+	#
+	window.tally.attributeWillChange = data.__tally['attributeWillChange']
+	window.tally.textWillChange = data.__tally['textWillChange']
 
-		# NB. window.document is tracing out as [ null ] in the function itself
-		# === although window.document.innerHTML works. window.document.documentElement
-		#     also works. I’ll be darned if I know why or where the problem is.
-		window.run ('tally(window.document.documentElement, window.data);')
+	#
+	# Inject Data option: if set, this will result in a copy
+	# of the data being injected into the template at tally.data
+	# (Useful if you want to append to it via Ajax calls, etc.
+	# When rendering a timeline, for example.)
+	#
+	if data.__tally['injectData']
+		head = window.document.getElementsByTagName('head')[0]
+		script = window.document.createElement('script')
+		script.setAttribute('type', 'text/javascript')
+		script.textContent = 'tally.data = ' + JSON.stringify(data, null, 2) + ';'
+		head.appendChild(script)
 
-		html = window.document.innerHTML;
+	#
+	# Static output option: if set, tally will strip the following
+	# from templates rendered on the server:
+	#
+	# 1. All Tally attributes
+	# 2. Any elements with falsy values for data-tally-if
+	#
+	# (Note: any elements marked data-tally-dummy are stripped from
+	#  ===== final output regardless of this setting. Also, this setting
+	#        has no effect when Tally is used on the client side.)
+	#
+	if data.__tally['renderStatic']
+		window.tally.renderStatic = yes
 
-		callback(null, html)
+	#
+	# Save the data on the DOM and run Tally.
+	#
+	window.data = data
+
+	# NB. window.document is tracing out as [ null ] in the function itself
+	# === although window.document.innerHTML works. window.document.documentElement
+	#     also works. I’ll be darned if I know why or where the problem is.
+	window.run ('tally(window.document.documentElement, window.data);')
+
+	html = window.document.innerHTML;
+
+	return html
+
