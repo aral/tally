@@ -174,7 +174,12 @@ tally = (root, obj) ->
       else
         attr = obj2
       if attr
-        node.style.display = "" if not shouldRenderStatic
+        if not shouldRenderStatic
+          if node.style.removeProperty
+            node.style.removeProperty 'display'
+          else
+            node.style.removeAttribute 'display'
+        # node.style.display = "" if not shouldRenderStatic
       else
 
         # Handle hiding differently based on whether user has flagged that
@@ -215,7 +220,13 @@ tally = (root, obj) ->
       if objList and objList.length
 
         # Don’t set the style if on the server (as we don’t on anything)
-        node.style.display = ""  if shouldRenderStatic
+        # node.style.display = ""  if not shouldRenderStatic
+        if not shouldRenderStatic
+          if node.style.removeProperty
+            node.style.removeProperty 'display'
+          else
+            node.style.removeAttribute 'display'
+
 
         # Allow this node to be treated as index zero in the repeat list
         # we do this by setting the shortcut variable to array[0]
