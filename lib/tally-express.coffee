@@ -16,7 +16,7 @@ exports.__express = (path, data, callback) ->
 
 exports.render = render
 
-render = (template, data, callback) ->
+render = (template, data) ->
 	# Create the DOM.
 	document = jsdom.jsdom(template, '2')
 	window = document.createWindow()
