@@ -14,8 +14,6 @@ exports.__express = (path, data, callback) ->
 
 		callback null, html
 
-exports.render = render
-
 render = (template, data) ->
 	# Create the DOM.
 	document = jsdom.jsdom(template, '2')
@@ -95,3 +93,4 @@ render = (template, data) ->
 
 	return html
 
+exports.render = render
