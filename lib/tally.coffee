@@ -170,7 +170,7 @@ tally = (root, obj) ->
           when "doesNotContain"     # In Distal this is nc (does not contain)
             attr = (obj2 and obj2.indexOf(attr[2]) < 0)
           else
-            throw node
+            throw new Error(node)
       else
         attr = obj2
       if attr
@@ -214,7 +214,7 @@ tally = (root, obj) ->
         html = node.parentNode
         html.removeChild tmpNode  while (tmpNode = node.nextSibling) and (tmpNode.qdup or (tmpNode.nodeType is 1 and tmpNode.getAttribute(qdup)))
 
-      throw attr2  unless attr2[1]
+      throw new Error(attr2) unless attr2[1]
       objList = resolve(obj, attr2[1])
 
       if objList and objList.length
@@ -360,7 +360,7 @@ tally = (root, obj) ->
       while i >= 0
         attr = html[i].split(" ")
         name = attr[0]
-        throw attr  unless attr[1]
+        throw new Error(attr) unless attr[1]
         value = resolve(obj, attr[1])
         value = ""  if value is `undefined`
         attributeWillChange node, name, value  if attributeWillChange
@@ -368,7 +368,7 @@ tally = (root, obj) ->
         if altAttr[name]
           switch name
             when "innerHTML" #should use "qtext"
-              throw node
+              throw new Error(node)
             when "disabled", "checked", "selected"
               node[name] = !!value
             when "style"

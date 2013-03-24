@@ -87,7 +87,10 @@ render = (template, data) ->
 	# NB. window.document is tracing out as [ null ] in the function itself
 	# === although window.document.innerHTML works. window.document.documentElement
 	#     also works. I’ll be darned if I know why or where the problem is.
-	window.run ('tally(window.document.documentElement, window.data);')
+	try
+		window.run ('tally(window.document.documentElement, window.data);')
+	catch e
+		throw e
 
 	html = window.document.innerHTML;
 
