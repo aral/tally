@@ -16,7 +16,9 @@ Installation
 
 Install Tally (and Tally Express):
 
-```npm install tally```
+```bash
+npm install tally
+```
 
 Install Tally’s dependencies:
 
@@ -27,7 +29,9 @@ npm install
 
 Start the server to play with the examples:
 
-```npm start```
+```bash
+npm start
+```
 
 Go to [http://localhost:3000](http://localhost:3000/) and play with the examples.
 
