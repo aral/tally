@@ -2,11 +2,20 @@ require 'should'
 tally = (require '../lib/tally-express').render
 
 describe 'Tally', ->
+
+	#
+	# Text
+	#
+
 	it 'should render the passed text', ->
 		tally('<html><p data-tally-text="theText"></p></html>', {theText:'some text'}).should.equal('<html><p data-tally-text="theText">some text</p></html>')
 
 	it 'should replace text with the passed text', ->
 		tally('<html><p data-tally-text="theText">default text</p></html>', {theText:'some other text'}).should.equal('<html><p data-tally-text="theText">some other text</p></html>')
+
+	#
+	# Attributes
+	#
 
 	it 'should render the passed attribute', ->
 		tally('<html><a data-tally-attribute="href theURL"></a></html>', {theURL: 'http://aralbalkan.com'}).should.equal('<html><a data-tally-attribute="href theURL" href="http://aralbalkan.com"></a></html>')
@@ -16,6 +25,10 @@ describe 'Tally', ->
 
 	it 'should render multiple attributes', ->
 		tally('<html><a data-tally-attribute="href theURL; class theClass"></a></html>', {theURL: 'http://aralbalkan.com', theClass: 'classy'}).should.equal('<html><a data-tally-attribute="href theURL; class theClass" class="classy" href="http://aralbalkan.com"></a></html>')
+
+	#
+	# Conditionals
+	#
 
 	it 'should repeat nodes with data-tally-repeat', ->
 		template = '<html><ul><li data-tally-repeat="person people"><span data-tally-text="person.name"></span></li></ul></html>'
