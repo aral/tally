@@ -214,7 +214,7 @@ tally = (root, obj) ->
         html = node.parentNode
         html.removeChild tmpNode  while (tmpNode = node.nextSibling) and (tmpNode.qdup or (tmpNode.nodeType is 1 and tmpNode.getAttribute(qdup)))
 
-      throw new Error(attr2) unless attr2[1]
+      throw new Error('missing second attribute (collection name) in data-tally-repeat: ' + node.outerHTML + '. The correct syntax is data-tally-repeat="value collection". e.g., to iterate over an array called people: data-tally-repeat="person people". And then, from within the loop, you can access properties of the person object (e.g., person.name, person.age, etc.)') unless attr2[1]
       objList = resolve(obj, attr2[1])
 
       if objList and objList.length

@@ -95,6 +95,19 @@ describe 'Tally', ->
 		(->
 			tally('<html><p data-tally-attribute="  href theURL   "></p></html>', {theURL: 'http://aralbalkan.com'})).should.not.throw()
 
+
+	#
+	# Error checking tests for data-tally-repeat.
+	#
+	it 'should throw an error if the second attribute (collection name) in an iterator is missing', ->
+		template = '<html><ul><li data-tally-repeat="person"><span data-tally-text="person.name"></span></li></ul></html>'
+		data = { people:[ {name: 'Aral'}, {name: 'Laura'}, {name: 'Natalie'}, {name: 'Osky'} ] }
+		errorMessage = 'missing second attribute (collection name) in data-tally-repeat: <li data-tally-repeat="person"><span data-tally-text="person.name"></span></li>. The correct syntax is data-tally-repeat="value collection". e.g., to iterate over an array called people: data-tally-repeat="person people". And then, from within the loop, you can access properties of the person object (e.g., person.name, person.age, etc.)'
+		(->
+			tally(template, data)
+		).should.throw(errorMessage)
+
+
 	# it 'should not include data-tally-* attributes if renderStatic option is set', ->
 
 	it 'should not include data-tally-dummy elements', ->
