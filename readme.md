@@ -20,8 +20,7 @@ Install Tally (and Tally Express):
 
 Install Tally’s dependencies:
 
-```
-bash
+```bash
 cd node_modules/tally/
 npm install
 ```
