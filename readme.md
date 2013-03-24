@@ -18,6 +18,14 @@ Install Tally (and Tally Express):
 
 ```npm install tally```
 
+Install Tally’s dependencies:
+
+```
+bash
+cd node_modules/tally/
+npm install
+```
+
 Start the server to play with the examples:
 
 ```npm start```
