@@ -1,6 +1,6 @@
-<h1><a href='/'><img id='tally-logo' src='http://aralbalkan.com/images/tally-logo-v2.svg'></a></h1>
+<h1 style='text-align: center'><a href='/'><img id='tally-logo' src='http://aralbalkan.com/images/tally-logo-v2.svg'></a></h1>
 
-[![Build Status](https://travis-ci.org/aral/tally.png?branch=master)](https://travis-ci.org/aral/tally)
+<p style='text-align: center'><a href='https://travis-ci.org/aral/tally'><img src='https://travis-ci.org/aral/tally.png?branch=master' alt='Build Status'></a></p>
 
 Tally is a simple, unobtrusive, design‐led JavaScript template engine for Node.js and browsers.
 
