@@ -374,10 +374,10 @@ tally = (root, obj) ->
         name = attr[0]
 
         if not name
-          throw new Error('missing attribute name for attribute ' + i)
+          throw new Error('missing attribute name for attribute ' + i + ': ' + node.outerHTML)
 
         if not attr[1]
-          throw new Error('missing attribute value for attribute ' + i + ' (\'' + name + '\')')
+          throw new Error('missing attribute value for attribute ' + i + ' (‘' + name + '’): '  + node.outerHTML)
 
         value = resolve(obj, attr[1])
         value = ""  if value is `undefined`

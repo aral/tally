@@ -61,7 +61,7 @@ describe 'Tally', ->
 	#
 	it 'should fail if an attribute has a missing value', ->
 		(->
-			tally('<html><p data-tally-attribute="href"></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('missing attribute value for attribute 0 (\'href\')')
+			tally('<html><p data-tally-attribute="href"></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('missing attribute value for attribute 0 (‘href’): <p data-tally-attribute="href"></p>')
 
 	it 'should not fail if a single attribute ends with a semi-colon', ->
 		(->
@@ -71,17 +71,17 @@ describe 'Tally', ->
 		(->
 			tally('<html><p data-tally-attribute="href theURL; class theClass;"></p></html>', {theURL: 'http://aralbalkan.com', theClass: 'classy'})).should.not.throw()
 
-	it 'should fail if an attribute just has a semi‐colon in it', ->
+	it 'should fail if an attribute only has a semi‐colon in it', ->
 		(->
-			tally('<html><p data-tally-attribute=";"></p></html>', {})).should.throw('missing attribute value for attribute 0 (\';\')')
+			tally('<html><p data-tally-attribute=";"></p></html>', {})).should.throw('missing attribute value for attribute 0 (‘;’): <p data-tally-attribute=";"></p>')
 
-	it 'should fail if an attribute just multiple semi‐colons in it', ->
+	it 'should fail if an attribute only has multiple semi‐colons in it', ->
 		(->
-			tally('<html><p data-tally-attribute=";;"></p></html>', {})).should.throw('missing attribute value for attribute 0 (\';;\')')
+			tally('<html><p data-tally-attribute=";;"></p></html>', {})).should.throw('missing attribute value for attribute 0 (‘;;’): <p data-tally-attribute=";;"></p>')
 
-	it 'should fail if an attribute just multiple semi‐colons with spaces between them in it', ->
+	it 'should fail if an attribute only has multiple semi‐colons with spaces between them in it', ->
 		(->
-			tally('<html><p data-tally-attribute=";  ;"></p></html>', {})).should.throw('missing attribute name for attribute 1')
+			tally('<html><p data-tally-attribute=";  ;"></p></html>', {})).should.throw('missing attribute name for attribute 1: <p data-tally-attribute=";  ;"></p>')
 
 	it 'should fail when data-tally-attribute is empty', ->
 		(->
