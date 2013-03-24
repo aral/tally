@@ -1,5 +1,10 @@
+before-script:
+	coffee -c *.coffee
+	coffee -c test/*.coffee
+	coffee -c lib/*.coffee
+
 language: node_js
 node_js:
-  - "0.9"
-  - "0.8"
-  - "0.6"
+	- "0.9"
+	- "0.8"
+	- "0.6"
