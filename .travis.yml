@@ -3,6 +3,6 @@ node_js:
   - "0.8"
 
 before_script:
-  coffee -c *.coffee
-  coffee -c test/*.coffee
-  coffee -c lib/*.coffee
+  coffee -c *.coffee;
+  coffee -c test/*.coffee;
+  coffee -c lib/*.coffee;
