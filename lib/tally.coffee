@@ -361,8 +361,6 @@ tally = (root, obj) ->
       # Ignore empty spaces
       attr = attr.trim()
 
-      # console.log('Attr: >' + attr + '<')
-
       if attr == ''
         throw new Error('empty data-tally-attribute definition on element: ' + node.outerHTML)
 
@@ -379,7 +377,7 @@ tally = (root, obj) ->
           throw new Error('missing attribute name for attribute ' + i)
 
         if not attr[1]
-          throw new Error('missing attribute value for attribute ' + i)
+          throw new Error('missing attribute value for attribute ' + i + ' (\'' + name + '\')')
 
         value = resolve(obj, attr[1])
         value = ""  if value is `undefined`

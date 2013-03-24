@@ -59,6 +59,10 @@ describe 'Tally', ->
 	#
 	# Error checking tests for data-tally-attribute.
 	#
+	it 'should fail if an attribute has a missing value', ->
+		(->
+			tally('<html><p data-tally-attribute="href"></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('missing attribute value for attribute 0 (\'href\')')
+
 	it 'should not fail if a single attribute ends with a semi-colon', ->
 		(->
 			tally('<html><p data-tally-attribute="href theURL;"></p></html>', {theURL: 'http://aralbalkan.com'})).should.not.throw()
@@ -69,11 +73,11 @@ describe 'Tally', ->
 
 	it 'should fail if an attribute just has a semi‐colon in it', ->
 		(->
-			tally('<html><p data-tally-attribute=";"></p></html>', {})).should.throw('missing attribute value for attribute 0')
+			tally('<html><p data-tally-attribute=";"></p></html>', {})).should.throw('missing attribute value for attribute 0 (\';\')')
 
 	it 'should fail if an attribute just multiple semi‐colons in it', ->
 		(->
-			tally('<html><p data-tally-attribute=";;"></p></html>', {})).should.throw('missing attribute value for attribute 0')
+			tally('<html><p data-tally-attribute=";;"></p></html>', {})).should.throw('missing attribute value for attribute 0 (\';;\')')
 
 	it 'should fail if an attribute just multiple semi‐colons with spaces between them in it', ->
 		(->
