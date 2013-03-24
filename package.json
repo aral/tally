@@ -9,7 +9,8 @@
     },
     "main": "./lib/tally-express.coffee",
     "scripts": {
-        "start": "coffee server.coffee"
+        "start": "coffee server.coffee",
+        "test": "mocha test/*.coffee -r coffee-script -r should"
     },
     "dependencies": {
         "jsdom": "0.5.1",
