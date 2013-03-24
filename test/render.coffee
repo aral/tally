@@ -32,6 +32,14 @@ describe 'Tally', ->
 			).should.throw('setting the innerHTML attribute via data-tally-atttribute is not supported. Please use data-tally-text to set the text in <p data-tally-attribute="innerHTML someHTML"></p>')
 
 	#
+	# Aliases
+	#
+	# it 'should correctly alias objects', ->
+	# 	template = '<html><p data-tally-alias="firstPerson person 0"><span data-tally-text="firstPerson.name"></span> <span data-tally-text="firstPerson.lastName"></span></p></html>'
+	# 	data = { people:[ {name: 'Aral', lastName: 'Balkan'}, {name: 'Laura', lastName: 'Kalbag'}, {name: 'Natalie', lastName: 'Kane'}, {name: 'Osky', 'Kalbag'} ] }
+
+
+	#
 	# Conditionals
 	#
 
