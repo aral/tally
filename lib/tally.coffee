@@ -170,7 +170,7 @@ tally = (root, obj) ->
           when "doesNotContain"     # In Distal this is nc (does not contain)
             attr = (obj2 and obj2.indexOf(attr[2]) < 0)
           else
-            throw new Error(node)
+            throw new Error('Unknown conditional operator (‘' + attr[1] + '’) in ' + node.outerHTML + '. Valid operators are: not:, is, isNot, isGreatherThan, isLessThan, contains, and doesNotContain.');
       else
         attr = obj2
       if attr

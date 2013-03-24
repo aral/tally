@@ -52,9 +52,9 @@ describe 'Tally', ->
 
 	# Note: should.js requires you to run the code that could throw an exception in an anonymous function and
 	# ===== apply .should.throw() to that. My instinct was to actually run the function itself and apply it to that.
-	it 'should fail conditionals with unknown operators', ->
+	it 'should throw an error when it encounters an unknown operator in a conditional', ->
 		(->
-			tally('<html><p data-tally-if="operand isLessThanny 2"></p></html>', {operand: 1})).should.throw('[ P ]')
+			tally('<html><p data-tally-if="operand isLessThanny 2"></p></html>', {operand: 1})).should.throw('Unknown conditional operator (‘isLessThanny’) in <p data-tally-if="operand isLessThanny 2"></p>. Valid operators are: not:, is, isNot, isGreatherThan, isLessThan, contains, and doesNotContain.')
 
 	#
 	# Error checking tests for data-tally-attribute.
