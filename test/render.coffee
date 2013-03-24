@@ -56,7 +56,24 @@ describe 'Tally', ->
 		(->
 			tally('<html><p data-tally-if="operand isLessThanny 2"></p></html>', {operand: 1})).should.throw('[ P ]')
 
+	#
+	# data-tally-attribute error checking tests.
+	#
+	it 'should not fail if a single attribute ends with a semi-colon', ->
+		(->
+			tally('<html><p data-tally-attribute="href theURL;"></p></html>', {theURL: 'http://aralbalkan.com'})).should.not.throw()
 
+	it 'should fail when data-tally-attribute is empty', ->
+		(->
+			tally('<html><p data-tally-attribute=""></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('empty data-tally-attribute definition on node [ P ]')
+
+	it 'should fail when data-tally-attribute is just whitespace', ->
+		(->
+			tally('<html><p data-tally-attribute="   "></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('empty data-tally-attribute definition on node [ P ]')
+
+	it 'should not fail when there is whitespace at ends of a data-tally-attribute attribute.', ->
+		(->
+			tally('<html><p data-tally-attribute="  href theURL   "></p></html>', {theURL: 'http://aralbalkan.com'})).should.not.throw()
 
 	# it 'should not include data-tally-* attributes if renderStatic option is set', ->
 

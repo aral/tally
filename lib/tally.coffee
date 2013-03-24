@@ -348,10 +348,24 @@ tally = (root, obj) ->
             i--
         prefix.selectedIndex = -1
 
+    #
     # Set multiple attributes on the node.
     # e.g., <div data-tally-attribute='value item.text; disabled item.disabled'>
+    #
+
+    # Catch empty data-tally-attribute attributes to help in debugging.
     attr = node.getAttribute(qattr)
+
     if attr
+
+      # Ignore empty spaces
+      attr = attr.trim()
+
+      # console.log('Attr: >' + attr + '<')
+
+      if attr == ''
+        throw new Error('empty data-tally-attribute definition on node ' + node)
+
       name = undefined
       value = undefined
       html = attr.split("; ")
@@ -360,7 +374,14 @@ tally = (root, obj) ->
       while i >= 0
         attr = html[i].split(" ")
         name = attr[0]
-        throw new Error(attr) unless attr[1]
+
+        if not name
+          throw new Error('missing attribute name for attribute ' + i)
+
+        if not attr[1]
+          console.log('>'+ attr + '<')
+          throw new Error('missing attribute value for attribute' + i)
+
         value = resolve(obj, attr[1])
         value = ""  if value is `undefined`
         attributeWillChange node, name, value  if attributeWillChange
@@ -382,6 +403,11 @@ tally = (root, obj) ->
         else
           node.setAttribute name, value
         i--
+    else
+      # Try and catch any empty data-tally-attribute attributes to help the user debug.
+      if node.hasAttribute
+        if node.hasAttribute(qattr)
+          throw new Error('empty data-tally-attribute definition on node ' + node)
 
     # Sets the innerHTML on the node.
     # e.g., <div data-tally-text='html item.description'>
