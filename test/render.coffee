@@ -57,19 +57,35 @@ describe 'Tally', ->
 			tally('<html><p data-tally-if="operand isLessThanny 2"></p></html>', {operand: 1})).should.throw('[ P ]')
 
 	#
-	# data-tally-attribute error checking tests.
+	# Error checking tests for data-tally-attribute.
 	#
 	it 'should not fail if a single attribute ends with a semi-colon', ->
 		(->
 			tally('<html><p data-tally-attribute="href theURL;"></p></html>', {theURL: 'http://aralbalkan.com'})).should.not.throw()
 
+	it 'should not fail if multiple attributes ends with a semi-colon', ->
+		(->
+			tally('<html><p data-tally-attribute="href theURL; class theClass;"></p></html>', {theURL: 'http://aralbalkan.com', theClass: 'classy'})).should.not.throw()
+
+	it 'should fail if an attribute just has a semi‐colon in it', ->
+		(->
+			tally('<html><p data-tally-attribute=";"></p></html>', {})).should.throw('missing attribute value for attribute 0')
+
+	it 'should fail if an attribute just multiple semi‐colons in it', ->
+		(->
+			tally('<html><p data-tally-attribute=";;"></p></html>', {})).should.throw('missing attribute value for attribute 0')
+
+	it 'should fail if an attribute just multiple semi‐colons with spaces between them in it', ->
+		(->
+			tally('<html><p data-tally-attribute=";  ;"></p></html>', {})).should.throw('missing attribute name for attribute 1')
+
 	it 'should fail when data-tally-attribute is empty', ->
 		(->
-			tally('<html><p data-tally-attribute=""></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('empty data-tally-attribute definition on node [ P ]')
+			tally('<html><p data-tally-attribute=""></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('empty data-tally-attribute definition on element: <p data-tally-attribute=""></p>')
 
 	it 'should fail when data-tally-attribute is just whitespace', ->
 		(->
-			tally('<html><p data-tally-attribute="   "></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('empty data-tally-attribute definition on node [ P ]')
+			tally('<html><p data-tally-attribute="   "></p></html>', {theURL: 'http://aralbalkan.com'})).should.throw('empty data-tally-attribute definition on element: <p data-tally-attribute="   "></p>')
 
 	it 'should not fail when there is whitespace at ends of a data-tally-attribute attribute.', ->
 		(->

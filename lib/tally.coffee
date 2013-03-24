@@ -364,7 +364,7 @@ tally = (root, obj) ->
       # console.log('Attr: >' + attr + '<')
 
       if attr == ''
-        throw new Error('empty data-tally-attribute definition on node ' + node)
+        throw new Error('empty data-tally-attribute definition on element: ' + node.outerHTML)
 
       name = undefined
       value = undefined
@@ -379,8 +379,7 @@ tally = (root, obj) ->
           throw new Error('missing attribute name for attribute ' + i)
 
         if not attr[1]
-          console.log('>'+ attr + '<')
-          throw new Error('missing attribute value for attribute' + i)
+          throw new Error('missing attribute value for attribute ' + i)
 
         value = resolve(obj, attr[1])
         value = ""  if value is `undefined`
@@ -407,7 +406,7 @@ tally = (root, obj) ->
       # Try and catch any empty data-tally-attribute attributes to help the user debug.
       if node.hasAttribute
         if node.hasAttribute(qattr)
-          throw new Error('empty data-tally-attribute definition on node ' + node)
+          throw new Error('empty data-tally-attribute definition on element: ' + node.outerHTML)
 
     # Sets the innerHTML on the node.
     # e.g., <div data-tally-text='html item.description'>
