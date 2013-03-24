@@ -10,7 +10,7 @@
     "main": "./lib/tally-express.coffee",
     "scripts": {
         "start": "coffee server.coffee",
-        "test": "node_modules/.bin/mocha test/*.js -r should -R spec"
+        "test": "node_modules/.bin/mocha test/*.coffee -r coffee-script -r should -R spec"
     },
     "dependencies": {
         "jsdom": "0.5.1",
