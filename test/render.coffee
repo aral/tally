@@ -26,6 +26,11 @@ describe 'Tally', ->
 	it 'should render multiple attributes', ->
 		tally('<html><a data-tally-attribute="href theURL; class theClass"></a></html>', {theURL: 'http://aralbalkan.com', theClass: 'classy'}).should.equal('<html><a data-tally-attribute="href theURL; class theClass" class="classy" href="http://aralbalkan.com"></a></html>')
 
+	it 'should throw an error if user tries to set innerHTML (user should use data-tally-text instead)', ->
+		( ->
+			tally('<html><p data-tally-attribute="innerHTML someHTML"></p></html>', {someHTML: '<em>this shouldn’t work</em>'})
+			).should.throw('setting the innerHTML attribute via data-tally-atttribute is not supported. Please use data-tally-text to set the text in <p data-tally-attribute="innerHTML someHTML"></p>')
+
 	#
 	# Conditionals
 	#

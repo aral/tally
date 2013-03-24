@@ -386,7 +386,7 @@ tally = (root, obj) ->
         if altAttr[name]
           switch name
             when "innerHTML" #should use "qtext"
-              throw new Error(node)
+              throw new Error('setting the innerHTML attribute via data-tally-atttribute is not supported. Please use data-tally-text to set the text in ' + node.outerHTML)
             when "disabled", "checked", "selected"
               node[name] = !!value
             when "style"
