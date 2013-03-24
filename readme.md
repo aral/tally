@@ -14,20 +14,19 @@ Check out the [Hello Badge series of introductory articles](https://github.com/a
 Installation
 ---
 
-Install Tally (and Tally Express):
+Install Tally:
 
 ```bash
 npm install tally
 ```
 
-Install Tally’s dependencies:
+Change to the Tally folder:
 
 ```bash
 cd node_modules/tally/
-npm install
 ```
 
-Start the server to play with the examples:
+Start the server:
 
 ```bash
 npm start
