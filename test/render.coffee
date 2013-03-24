@@ -2,11 +2,20 @@ require 'should'
 tally = (require '../lib/tally-express').render
 
 describe 'Tally', ->
+
+	#
+	# Text
+	#
+
 	it 'should render the passed text', ->
 		tally('<html><p data-tally-text="theText"></p></html>', {theText:'some text'}).should.equal('<html><p data-tally-text="theText">some text</p></html>')
 
 	it 'should replace text with the passed text', ->
 		tally('<html><p data-tally-text="theText">default text</p></html>', {theText:'some other text'}).should.equal('<html><p data-tally-text="theText">some other text</p></html>')
+
+	#
+	# Attributes
+	#
 
 	it 'should render the passed attribute', ->
 		tally('<html><a data-tally-attribute="href theURL"></a></html>', {theURL: 'http://aralbalkan.com'}).should.equal('<html><a data-tally-attribute="href theURL" href="http://aralbalkan.com"></a></html>')
@@ -16,6 +25,15 @@ describe 'Tally', ->
 
 	it 'should render multiple attributes', ->
 		tally('<html><a data-tally-attribute="href theURL; class theClass"></a></html>', {theURL: 'http://aralbalkan.com', theClass: 'classy'}).should.equal('<html><a data-tally-attribute="href theURL; class theClass" class="classy" href="http://aralbalkan.com"></a></html>')
+
+	it 'should throw an error if user tries to set innerHTML (user should use data-tally-text instead)', ->
+		( ->
+			tally('<html><p data-tally-attribute="innerHTML someHTML"></p></html>', {someHTML: '<em>this shouldn’t work</em>'})
+			).should.throw('setting the innerHTML attribute via data-tally-atttribute is not supported. Please use data-tally-text to set the text in <p data-tally-attribute="innerHTML someHTML"></p>')
+
+	#
+	# Conditionals
+	#
 
 	it 'should repeat nodes with data-tally-repeat', ->
 		template = '<html><ul><li data-tally-repeat="person people"><span data-tally-text="person.name"></span></li></ul></html>'
@@ -94,6 +112,19 @@ describe 'Tally', ->
 	it 'should not fail when there is whitespace at ends of a data-tally-attribute attribute.', ->
 		(->
 			tally('<html><p data-tally-attribute="  href theURL   "></p></html>', {theURL: 'http://aralbalkan.com'})).should.not.throw()
+
+
+	#
+	# Error checking tests for data-tally-repeat.
+	#
+	it 'should throw an error if the second attribute (collection name) in an iterator is missing', ->
+		template = '<html><ul><li data-tally-repeat="person"><span data-tally-text="person.name"></span></li></ul></html>'
+		data = { people:[ {name: 'Aral'}, {name: 'Laura'}, {name: 'Natalie'}, {name: 'Osky'} ] }
+		errorMessage = 'missing second attribute (collection name) in data-tally-repeat: <li data-tally-repeat="person"><span data-tally-text="person.name"></span></li>. The correct syntax is data-tally-repeat="value collection". e.g., to iterate over an array called people: data-tally-repeat="person people". And then, from within the loop, you can access properties of the person object (e.g., person.name, person.age, etc.)'
+		(->
+			tally(template, data)
+		).should.throw(errorMessage)
+
 
 	# it 'should not include data-tally-* attributes if renderStatic option is set', ->
 
