@@ -23,7 +23,7 @@ body
 .leader
 {
 	max-width:27%;
-	border: 1px solid black;
+	border: 1px solid #4b4b4b;
 	padding: 24px;
 	margin: 24px 0;
 	display: inline-block;
@@ -43,7 +43,7 @@ body
 	margin: -24px;
 	margin-bottom: 24px;
 	padding: 12px;
-	background-color:#252525;
+	background-color:#545454;
 	color: white;
 	font-weight: 300;
 	/*border-radius: 10px 10px 0 0;*/
