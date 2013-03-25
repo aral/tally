@@ -20,6 +20,11 @@ body
 	margin: 0 auto;
 }
 
+#statuses img
+{
+	vertical-align: middle;
+}
+
 .leader
 {
 	max-width:27%;

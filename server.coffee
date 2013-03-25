@@ -21,7 +21,8 @@ superagent = require 'superagent'
 
 # Helper: create a route from a route name (e.g., /simple -> /routes/simple.coffee)
 createRoute = (routeName) ->
-	route = require('./routes/' + if routeName == '/' then 'index' else routeName[1..] + '.coffee').route
+	path = if routeName == '/' then 'main' else routeName[1..]
+	route = require('./routes/' + path + '.coffee').route
 	app.get routeName, route
 
 #
