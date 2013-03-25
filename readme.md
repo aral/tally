@@ -47,4 +47,4 @@ Credits
 
 Tally extends the excellent [Distal template engine](https://code.google.com/p/distal/) which is an implementation of the [Template Attribute Language](http://en.wikipedia.org/wiki/Template_Attribute_Language) (TAL) concept from [Zope](http://www.zope.org).
 
-<p style='text-align: center; vertical-align: middle;'><a href='https://travis-ci.org/aral/tally'><img src='https://travis-ci.org/aral/tally.png?branch=master' alt='Build Status'></a> <a href='http://tally.jit.su'><img src='http://webhooks.nodejitsu.com/aral/tally.png' alt='Deployment status'></a></p>
+<p style='text-align: center; vertical-align: middle;'><a href='https://travis-ci.org/aral/tally'><img src='https://travis-ci.org/aral/tally.png?branch=master' alt='Build Status'></a></p>
