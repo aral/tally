@@ -1,4 +1,4 @@
-<h1 style='text-align: center'><a href='/'><img id='tally-logo' src='https://aralbalkan.com/views/images/tally-logo.svg'></a></h1>
+<h1 style='text-align: center'><a href='/'><img id='tally-logo' src='https://aralbalkan.com/images/tally-logo.svg'></a></h1>
 
 Tally is a simple, unobtrusive, design‐led JavaScript template engine for Node.js and browsers.
 
