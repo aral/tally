@@ -30,15 +30,6 @@ npm start
 
 Go to [http://localhost:3000](http://localhost:3000/) and play with the examples.
 
-Web site
----
-
-The Tally web site is just an instance of the Tally project running on Nodejitsu (exactly what you would see on your local machine if you followed the steps under Installation, above.)
-
-Check it out at:
-
-[http://tally.jit.su](http://tally.jit.su)
-
 
 Credits
 ---
