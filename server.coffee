@@ -9,10 +9,6 @@
 #
 ################################################################################
 
-require('nodefly').profile(
-    'ec5f2af70b32cb4ce18952bc522ea041',
-    ['Tally', process.env.SUBDOMAIN]
-)
 
 express = require 'express'
 tally = require './lib/tally-express.coffee'
